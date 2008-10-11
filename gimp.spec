@@ -1,5 +1,4 @@
-%define oname gimp
-%define name gimp2.6
+%define name gimp
 %define version 2.6.1
 %define release %mkrel 1
 %define lib_major 0
@@ -32,8 +31,6 @@
 %define abi_version 2.6
 %define libname	%mklibname %{name}_ %{api_version} %{lib_major}
 %define devlibname	%mklibname -d %{name}_ %{api_version}
-%define olibname %mklibname %oname %{api_version} %{lib_major}
-%define odevelname %mklibname -d %oname %{api_version}
 
 Summary:	The GNU Image Manipulation Program
 Name:		%name
@@ -102,8 +99,6 @@ Requires(postun):  desktop-file-utils
 Conflicts:	perl-Gimp < 2.2
 Conflicts:	gutenprint-gimp2 < 5.0.1
 Suggests: gimp-help-2
-Conflicts: %oname
-Conflicts: gimp2.5
 
 %description
 The GIMP is an image manipulation program suitable for photo retouching,
@@ -141,8 +136,6 @@ Requires:	%{libname} = %epoch:%{version}
 #Provides:	gimp-devel = %{version}-%{release}
 Provides:	gimp2.6-devel = %{version}-%{release}
 #Provides:	libgimp-devel = %{version}-%{release}
-Conflicts: %odevelname
-Conflicts: gimp2.5-devel
 
 %description -n %{devlibname}
 Static libraries and header files for writing GIMP plugins and extensions.
@@ -153,9 +146,6 @@ Group:		System/Libraries
 Epoch:		1
 License:	LGPLv2+
 Provides:	libgimp%{api_version} = %{version}-%{release}
-Conflicts: %olibname
-Conflicts: %mklibname %{oname}2.5_ %{api_version} %{lib_major}
-
 
 %description -n %libname
 This is the library that provides core GIMP functionality.
@@ -168,8 +158,6 @@ Group:		Graphics
 Epoch:		1
 Requires:	pygtk2.0
 Obsoletes: gimp1_3-python, gimp2_0-python, gimp2_2-python
-Conflicts: %oname-python
-Conflicts: gimp2.5-python
 
 %description python
 This package contains the python modules for GIMP, which act as a
