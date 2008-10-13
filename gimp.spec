@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.1
-%define release %mkrel 2
+%define release %mkrel 3
 %define lib_major 0
 
 # optional compile flags
@@ -29,8 +29,8 @@
 
 %define api_version 2.0
 %define abi_version 2.6
-%define libname	%mklibname %{name}_ %{api_version} %{lib_major}
-%define devlibname	%mklibname -d %{name}_ %{api_version}
+%define libname	%mklibname %{name} %{api_version}_%{lib_major}
+%define devlibname	%mklibname -d %{name}%{api_version}
 
 Summary:	The GNU Image Manipulation Program
 Name:		%name
