@@ -48,7 +48,6 @@ Source13:	gimp-scripting-sample.pl
 Patch1: gimp-2.5.1-fix-linking.patch
 #gw fix name in desktop file and disable startup notification
 Patch6:         gimp-2.5.1-desktopentry.patch
-BuildConflicts:	libgimp1.3 libgimp1.3-devel
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	ImageMagick
