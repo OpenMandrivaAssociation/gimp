@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.1
-%define release %mkrel 3
+%define release %mkrel 4
 %define lib_major 0
 
 # optional compile flags
@@ -89,8 +89,8 @@ BuildRequires:  desktop-file-utils
 %if %{mdkversion} <= 200800
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %endif
-Provides: gimp1_3 gimp2_0 gimp2_2
-Obsoletes: gimp1_3 gimp2_0 gimp2_2
+Provides: gimp1_3 gimp2_0 gimp2_2 gimp2.6
+Obsoletes: gimp1_3 gimp2_0 gimp2_2 gimp2.6
 # workaround libgimp not bumping its major on API/ABI changes:
 Requires:	%{libname} = %epoch:%{version}
 Requires(post):  desktop-file-utils
@@ -145,6 +145,7 @@ Group:		System/Libraries
 Epoch:		1
 License:	LGPLv2+
 Provides:	libgimp%{api_version} = %{version}-%{release}
+Obsoletes:	%mklibname gimp 2.6_2.0_0
 
 %description -n %libname
 This is the library that provides core GIMP functionality.
