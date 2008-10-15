@@ -204,8 +204,6 @@ export CFLAGS="$RPM_OPT_FLAGS -ffast-math"
 	--with-gif-compression=rle	\
 %endif
 
-
-#gw parallel build is broken
 %make
 
 %install
