@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.1
-%define release %mkrel 4
+%define release %mkrel 5
 %define lib_major 0
 
 # optional compile flags
@@ -132,9 +132,9 @@ Requires:	libgtk+2.0-devel >= %{req_gtk_version}
 Epoch:		1
 License:	LGPLv2+
 Requires:	%{libname} = %epoch:%{version}
-#Provides:	gimp-devel = %{version}-%{release}
+Provides:	gimp-devel = %{version}-%{release}
 Provides:	gimp2.6-devel = %{version}-%{release}
-#Provides:	libgimp-devel = %{version}-%{release}
+Provides:	libgimp-devel = %{version}-%{release}
 
 %description -n %{devlibname}
 Static libraries and header files for writing GIMP plugins and extensions.
