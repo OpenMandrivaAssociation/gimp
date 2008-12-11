@@ -50,7 +50,7 @@ Patch1: gimp-2.5.1-fix-linking.patch
 Patch6:         gimp-2.5.1-desktopentry.patch
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	aalib-devel
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:  libexif-devel
