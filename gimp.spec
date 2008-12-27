@@ -45,6 +45,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
+Patch0: gimp-2.6.3-fix-str-fmt.patch
 Patch1: gimp-2.5.1-fix-linking.patch
 #gw fix name in desktop file and disable startup notification
 Patch6:         gimp-2.5.1-desktopentry.patch
@@ -168,6 +169,7 @@ in python instead of in scheme.
 
 %prep
 %setup -q -n gimp-%version
+%patch0 -p0
 %patch1 -p1
 %patch6 -p1 -b .desktopentry
 
