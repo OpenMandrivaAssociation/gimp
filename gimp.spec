@@ -1,6 +1,6 @@
 %define name gimp
-%define version 2.6.3
-%define release %mkrel 2
+%define version 2.6.4
+%define release %mkrel 1
 %define lib_major 0
 
 # optional compile flags
@@ -45,8 +45,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
-Patch0: gimp-2.6.3-fix-str-fmt.patch
-Patch1: gimp-2.5.1-fix-linking.patch
+Patch0: gimp-2.6.4-fix-str-fmt.patch
+Patch1: gimp-2.6.4-fix-linking.patch
 #gw fix name in desktop file and disable startup notification
 Patch6:         gimp-2.5.1-desktopentry.patch
 BuildRequires:  libxfixes-devel
@@ -169,8 +169,8 @@ in python instead of in scheme.
 
 %prep
 %setup -q -n gimp-%version
-%patch0 -p0
-%patch1 -p1
+%patch0 -p1 -b .fix-str-fmt
+%patch1 -p1 -b .fix-linking
 %patch6 -p1 -b .desktopentry
 
 %build
