@@ -1,29 +1,14 @@
 %define name gimp
 %define version 2.6.4
-%define release %mkrel 1
+%define release %mkrel 2
 %define lib_major 0
 
 # optional compile flags
 %define enable_python 1
 %{?_without_python: %global enable_python 0}
 
-%define enable_mmx 0
-%{?_with_mmx: %global enable_mmx 1}
-
-%ifarch x86_64
-%define enable_sse 1
-%else
-%define enable_sse 0
-%endif
-%{?_with_sse: %global enable_sse 1}
-%{?_without_sse: %global enable_sse 1}
-
 %define enable_lzw 0
 %{?_with_lzw: %global enable_lzw 1}
-
-%if %{enable_sse}
-%define enable_mmx 1
-%endif
 
 %define req_gtk_version 2.12.1
 
@@ -122,8 +107,6 @@ running the scripts.
 
 Build Options:
 --without python        Disable pygimp (default enabled)
---with    mmx           Enable MMX code support (default disabled)
---with    sse           Enable SSE code support (default disabled)
 --with    lzw           Enable LZW compression in GIF (default disabled)
 
 %package -n %{devlibname}
@@ -173,33 +156,18 @@ in python instead of in scheme.
 %patch1 -p1 -b .fix-linking
 %patch6 -p1 -b .desktopentry
 
+#needed by patch1
+autoreconf -I m4macros
+
 %build
-aclocal -I m4macros
-autoconf
-automake
 
-# (Abel) is that -ffast-math fails on other platforms?
-%ifarch %ix86 ppc
-export CFLAGS="$RPM_OPT_FLAGS -ffast-math"
-%endif
-
-%configure2_5x --enable-default-binary=no \
+%configure2_5x --enable-default-binary=yes \
 	--enable-mp=yes		\
 	--enable-gtk-doc=yes	\
 %if %enable_python
 	--enable-python=yes	\
 %else
 	--enable-python=no	\
-%endif
-%if %enable_mmx
-	--enable-mmx=yes	\
-%else
-	--enable-mmx=no		\
-%endif
-%if %enable_sse
-	--enable-sse=yes	\
-%else
-	--enable-sse=no		\
 %endif
 %if %enable_lzw
 	--with-gif-compression=lzw	\
@@ -268,7 +236,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f gimp20.lang
 %defattr(-,root,root,0755)
+%{_bindir}/gimp
 %{_bindir}/gimp-%abi_version
+%{_bindir}/gimp-console
 %{_bindir}/gimp-console-%abi_version
 %{_datadir}/applications/*
 %{_datadir}/gimp
