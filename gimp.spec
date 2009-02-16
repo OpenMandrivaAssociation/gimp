@@ -157,7 +157,7 @@ in python instead of in scheme.
 %patch6 -p1 -b .desktopentry
 
 #needed by patch1
-autoreconf -I m4macros
+autoreconf -fi -I m4macros
 
 %build
 
