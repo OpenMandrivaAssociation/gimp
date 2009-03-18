@@ -38,7 +38,7 @@ BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	imagemagick
 BuildRequires:	aalib-devel
-BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	gtk-doc >= 1.11-3mdv
 BuildRequires:  libexif-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libgtk+2.0-devel >= %{req_gtk_version}
@@ -171,9 +171,9 @@ autoreconf -fi -I m4macros
 %if %enable_lzw
 	--with-gif-compression=lzw	\
 %else
-	--with-gif-compression=rle	
+	--with-gif-compression=rle	\
 %endif
-#	--enable-gtk-doc=yes	
+	--enable-gtk-doc=yes	
 
 %make
 
