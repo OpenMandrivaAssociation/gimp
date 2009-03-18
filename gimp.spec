@@ -1,6 +1,6 @@
 %define name gimp
-%define version 2.6.5
-%define release %mkrel 2
+%define version 2.6.6
+%define release %mkrel 1
 %define lib_major 0
 
 # optional compile flags
@@ -163,7 +163,6 @@ autoreconf -fi -I m4macros
 
 %configure2_5x --enable-default-binary=yes \
 	--enable-mp=yes		\
-	--enable-gtk-doc=yes	\
 %if %enable_python
 	--enable-python=yes	\
 %else
@@ -172,8 +171,9 @@ autoreconf -fi -I m4macros
 %if %enable_lzw
 	--with-gif-compression=lzw	\
 %else
-	--with-gif-compression=rle	\
+	--with-gif-compression=rle	
 %endif
+#	--enable-gtk-doc=yes	
 
 %make
 
