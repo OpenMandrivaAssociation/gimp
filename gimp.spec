@@ -1,6 +1,6 @@
 %define name gimp
-%define version 2.6.6
-%define release %mkrel 4
+%define version 2.6.7
+%define release %mkrel 1
 %define lib_major 0
 
 # optional compile flags
@@ -32,15 +32,8 @@ Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0: gimp-2.6.4-fix-str-fmt.patch
 Patch1: gimp-2.6.4-fix-linking.patch
-#gw from Fedora, fix bad babl and gegl version checks on startup (bug #52163)
-Patch2: gimp-2.6.6-gegl-babl-versions-check.patch
 #gw fix name in desktop file and disable startup notification
 Patch6:         gimp-2.5.1-desktopentry.patch
-# (fc) 2.6.6-2mdv fix various crashes (GIT)
-Patch7:		gimp-2.6.6-fsync.patch
-Patch8:		gimp-2.6.6-helpcrash.patch
-Patch9:		gimp-2.6.6-undocanvas.patch
-Patch10:	gimp-2.6.6-transformcolor.patch
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	imagemagick
@@ -161,14 +154,9 @@ in python instead of in scheme.
 %setup -q -n gimp-%version
 %patch0 -p1 -b .fix-str-fmt
 %patch1 -p1 -b .fix-linking
-%patch2 -p1
 %patch6 -p1 -b .desktopentry
-%patch7 -p1 -b .fsync
-%patch8 -p1 -b .helpcrash
-%patch9 -p1 -b .undocanvas
-%patch10 -p1 -b .transformationcolor
 
-#needed by patch1 & 7
+#needed by patch1
 autoreconf -fi -I m4macros
 
 %build
