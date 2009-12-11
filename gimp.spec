@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.7
-%define release %mkrel 4
+%define release %mkrel 5
 %define lib_major 0
 
 # optional compile flags
@@ -36,7 +36,8 @@ Patch1: gimp-2.6.4-fix-linking.patch
 Patch6:         gimp-2.5.1-desktopentry.patch
 Patch7:		gimp-2.6.7-fix-bad-zh_CN-translation.patch
 #gw fixes integer overflow in bmp plugin
-Patch8:		gimp-CVE-2009-1570.patch
+Patch8:		gimp-2.6.7-CVE-2009-1570.diff
+Patch9:		gimp-2.6.6-CVE-2009-3909.diff
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	imagemagick
@@ -159,7 +160,8 @@ in python instead of in scheme.
 %patch1 -p1 -b .fix-linking
 %patch6 -p1 -b .desktopentry
 %patch7 -p1 -b .zh_CN
-%patch8 -p1
+%patch8 -p0 -b .CVE-2009-1570
+%patch9 -p1 -b .CVE-2009-3909
 
 #needed by patch1
 autoreconf -fi -I m4macros
