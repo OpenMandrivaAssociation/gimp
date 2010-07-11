@@ -1,5 +1,5 @@
 %define name gimp
-%define version 2.6.9
+%define version 2.6.10
 %define release %mkrel 1
 %define lib_major 0
 
