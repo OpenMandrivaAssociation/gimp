@@ -1,6 +1,6 @@
 %define name gimp
-%define version 2.6.10
-%define release %mkrel 2
+%define version 2.6.11
+%define release %mkrel 1
 %define lib_major 0
 
 # optional compile flags
