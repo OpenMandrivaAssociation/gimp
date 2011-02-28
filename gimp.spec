@@ -249,7 +249,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gimp/%{api_version}/modules
 %{_libdir}/gimp/%{api_version}/plug-ins
 %exclude %{_libdir}/gimp/%{api_version}/plug-ins/*.py
-%{_mandir}/man1/gimp*
+%{_mandir}/man1/gimp-*
+%{_mandir}/man1/gimp.*
 %{_mandir}/man5/gimp*
 %_datadir/icons/hicolor/*/apps/gimp.png
 %_datadir/icons/hicolor/scalable/apps/gimp.svg
