@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.11
-%define release %mkrel 4
+%define release %mkrel 5
 %define lib_major 0
 
 # optional compile flags
@@ -9,6 +9,9 @@
 
 %define enable_lzw 0
 %{?_with_lzw: %global enable_lzw 1}
+
+%define enable_hal 0
+%{?_with_hal: %global enable_hal 1}
 
 %define req_gtk_version 2.12.1
 
@@ -69,7 +72,10 @@ BuildRequires:	python-devel
 BuildRequires:  automake
 BuildRequires:  lcms-devel
 BuildRequires:  libwmf-devel >= 0.2.8
+%if %enable_hal
 BuildRequires:  libhal-devel
+%endif
+Buildrequires:  dbus-glib-devel
 BuildRequires:  libxext-devel
 BuildRequires:  desktop-file-utils
 %if %{mdkversion} <= 200800
@@ -173,7 +179,14 @@ autoreconf -fi -I m4macros
 %else
 	--with-gif-compression=rle	\
 %endif
-	--enable-gtk-doc=yes	
+%if %enable_hal
+	--with-hal \
+%else
+	--without-hal \
+%endif
+	--with-gvfs \
+	--with-dbus \
+	--enable-gtk-doc=yes
 
 %make
 
