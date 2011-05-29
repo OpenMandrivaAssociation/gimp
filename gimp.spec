@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.11
-%define release %mkrel 5
+%define release %mkrel 6
 %define lib_major 0
 
 # optional compile flags
@@ -37,6 +37,37 @@ Patch0: gimp-2.6.4-fix-str-fmt.patch
 Patch1: gimp-2.6.4-fix-linking.patch
 #gw fix name in desktop file and disable startup notification
 Patch6:         gimp-2.5.1-desktopentry.patch
+
+# distro specific: use xdg-open instead of firefox as web browser
+Patch10:	gimp-2.6.2-xdg-open.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=559081
+# "JPEG Save dialog preview should adjust size units"
+Patch11:	gimp-2.6.7-jpeg-units.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=556896
+# "Dialogs don't get minimized with single image window"
+Patch12:	gimp-2.6.6-minimize-dialogs.patch
+# backport: fix building with "gold" linker
+Patch13:	gimp-2.6.8-gold.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=198367
+# https://bugzilla.gnome.org/show_bug.cgi?id=623045
+# make script-fu logging IPv6 aware
+Patch14:	gimp-2.6.10-script-fu-ipv6.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=651002
+# avoid traceback in colorxhtml plugin, upstreamed
+Patch15:	gimp-2.6.11-colorxhtml.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=667958
+# avoid traceback in pyslice plugin, upstreamed
+Patch16:	gimp-2.6.11-pyslice.patch
+# backport: work with poppler-0.17, upstreamed
+Patch17:	gimp-2.6.11-poppler-0.17.patch
+# backport: CVE-2010-4543, CVE-2011-1782
+# harden PSP plugin against bogus input data
+Patch18:	gimp-2.6.11-psp-overflow.patch
+# backport: CVE-2010-4540, CVE-2010-4541, CVE-2010-4542
+# fix buffer overflows in sphere-designer, gfig, lighting plugins
+Patch19:	gimp-2.6.11-CVE-2010-4540,4541,4542.patch
+# files changed by autoreconf after applying the above
+Patch20:	gimp-2.6.11-11-autoreconf.patch.bz2
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	imagemagick
@@ -161,6 +192,19 @@ in python instead of in scheme.
 %patch0 -p1 -b .fix-str-fmt
 %patch1 -p1 -b .fix-linking
 %patch6 -p1 -b .desktopentry
+
+%patch10 -p1 -b .xdg-open
+%patch11 -p1 -b .jpeg-units
+%patch12 -p1 -b .minimize-dialogs
+%patch13 -p1 -b .gold
+%patch14 -p1 -b .script-fu-ipv6
+%patch15 -p1 -b .colorxhtml
+%patch16 -p1 -b .pyslice
+%patch17 -p1 -b .poppler-0.17
+%patch18 -p1 -b .psp-overflow
+%patch19 -p1 -b .CVE-2010-4540,4541,4542
+
+%patch20 -p1 -b .autoreconf
 
 #needed by patch1
 autoreconf -fi -I m4macros
