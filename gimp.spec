@@ -88,9 +88,6 @@ BuildRequires:	xpm-devel
 BuildRequires:  librsvg-devel >= 2.14.0
 BuildRequires:	libxmu-devel
 BuildRequires:	intltool
-# todo: make it build against libffi from gcc?
-BuildConflicts:	libffi-devel < 4.6
-BuildRequires:	ffi5-devel >= 3.0
 # mail plugin
 BuildRequires:	sendmail-command
 # help browser
