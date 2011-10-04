@@ -68,6 +68,7 @@ Patch18:	gimp-2.6.11-psp-overflow.patch
 Patch19:	gimp-2.6.11-CVE-2010-4540,4541,4542.patch
 # files changed by autoreconf after applying the above
 Patch20:	gimp-2.6.11-11-autoreconf.patch.bz2
+Patch21:	gimp-2.6.11-libpng15.diff
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	imagemagick
@@ -78,9 +79,7 @@ BuildRequires:	libart_lgpl-devel
 BuildRequires:	libgtk+2.0-devel >= %{req_gtk_version}
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	libalsa-devel
-%if %{mdkversion} >= 200800
 BuildRequires:	libpoppler-glib-devel >= 0.4.1
-%endif
 BuildRequires:	libmng-devel
 BuildRequires: 	libpng-devel
 BuildRequires:	libtiff-devel
@@ -88,7 +87,10 @@ BuildRequires:	perl
 BuildRequires:	xpm-devel
 BuildRequires:  librsvg-devel >= 2.14.0
 BuildRequires:	libxmu-devel
-BuildRequires:	intltool 
+BuildRequires:	intltool
+# todo: make it build against libffi from gcc?
+Conflicts:	libffi-devel < 4.6
+BuildRequires:	ffi5-devel >= 3.0
 # mail plugin
 BuildRequires:	sendmail-command
 # help browser
@@ -109,9 +111,6 @@ BuildRequires:  libhal-devel
 Buildrequires:  dbus-glib-devel
 BuildRequires:  libxext-devel
 BuildRequires:  desktop-file-utils
-%if %{mdkversion} <= 200800
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%endif
 Provides: gimp1_3 gimp2_0 gimp2_2 gimp2.6
 Obsoletes: gimp1_3 gimp2_0 gimp2_2 gimp2.6
 # workaround libgimp not bumping its major on API/ABI changes:
@@ -121,6 +120,7 @@ Requires(postun):  desktop-file-utils
 Conflicts:	perl-Gimp < 2.2
 Conflicts:	gutenprint-gimp2 < 5.0.1
 Suggests: gimp-help-2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The GIMP is an image manipulation program suitable for photo retouching,
@@ -205,6 +205,7 @@ in python instead of in scheme.
 %patch19 -p1 -b .CVE-2010-4540,4541,4542
 
 %patch20 -p1 -b .autoreconf
+%patch21 -p1 -b .libpng15
 
 #needed by patch1
 autoreconf -fi -I m4macros
@@ -269,27 +270,6 @@ desktop-file-install --vendor="" \
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%if %mdkversion < 200900
-%post
-%update_desktop_database
-%update_icon_cache hicolor
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_desktop_database
-%clean_icon_cache hicolor
-%clean_menus
-%endif
-
-%if %mdkversion < 200900
-%post -n %libname -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libname -p /sbin/ldconfig
-%endif
 
 %files -f gimp20.lang
 %defattr(-,root,root,0755)
