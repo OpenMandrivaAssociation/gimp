@@ -1,6 +1,6 @@
 %define name gimp
 %define version 2.6.11
-%define release %mkrel 8
+%define release %mkrel 9
 %define lib_major 0
 
 # optional compile flags
@@ -89,7 +89,7 @@ BuildRequires:  librsvg-devel >= 2.14.0
 BuildRequires:	libxmu-devel
 BuildRequires:	intltool
 # todo: make it build against libffi from gcc?
-Conflicts:	libffi-devel < 4.6
+BuildConflicts:	libffi-devel < 4.6
 BuildRequires:	ffi5-devel >= 3.0
 # mail plugin
 BuildRequires:	sendmail-command
