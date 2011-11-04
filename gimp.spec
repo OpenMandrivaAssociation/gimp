@@ -1,6 +1,3 @@
-%define name gimp
-%define version 2.6.11
-%define release %mkrel 9
 %define lib_major 0
 
 # optional compile flags
@@ -18,18 +15,16 @@
 %define api_version 2.0
 %define abi_version 2.6
 %define libname	%mklibname %{name} %{api_version}_%{lib_major}
-%define devlibname	%mklibname -d %{name}%{api_version}
+%define devlibname %mklibname -d %{name}%{api_version}
 
 Summary:	The GNU Image Manipulation Program
-Name:		%name
+Name:		gimp
 Epoch:		1
-Version:	%{version}
-Release:	%{release}
+Version:	2.6.11
+Release:	%mkrel 10
 License:	GPLv2+
 Group:		Graphics
 URL:		http://www.gimp.org/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
-
 Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi_version}/gimp-%version.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
@@ -66,9 +61,10 @@ Patch18:	gimp-2.6.11-psp-overflow.patch
 # backport: CVE-2010-4540, CVE-2010-4541, CVE-2010-4542
 # fix buffer overflows in sphere-designer, gfig, lighting plugins
 Patch19:	gimp-2.6.11-CVE-2010-4540,4541,4542.patch
+Patch20:	gimp-2.6.11-CVE-2011-2896.diff
 # files changed by autoreconf after applying the above
-Patch20:	gimp-2.6.11-11-autoreconf.patch.bz2
-Patch21:	gimp-2.6.11-libpng15.diff
+Patch100:	gimp-2.6.11-11-autoreconf.patch.bz2
+Patch101:	gimp-2.6.11-libpng15.diff
 BuildRequires:  libxfixes-devel
 BuildRequires:	gegl-devel >= 0.0.18
 BuildRequires:	imagemagick
@@ -111,7 +107,7 @@ BuildRequires:  desktop-file-utils
 Provides: gimp1_3 gimp2_0 gimp2_2 gimp2.6
 Obsoletes: gimp1_3 gimp2_0 gimp2_2 gimp2.6
 # workaround libgimp not bumping its major on API/ABI changes:
-Requires:	%{libname} = %epoch:%{version}
+Requires:	%{libname} >= %epoch:%{version}
 Requires(post):  desktop-file-utils
 Requires(postun):  desktop-file-utils
 Conflicts:	perl-Gimp < 2.2
@@ -149,7 +145,7 @@ Group:		Development/GNOME and GTK+
 Requires:	libgtk+2.0-devel >= %{req_gtk_version}
 Epoch:		1
 License:	LGPLv2+
-Requires:	%{libname} = %epoch:%{version}
+Requires:	%{libname} >= %epoch:%{version}
 Provides:	gimp-devel = %{version}-%{release}
 Provides:	gimp2.6-devel = %{version}-%{release}
 Provides:	libgimp-devel = %{version}-%{release}
@@ -185,6 +181,7 @@ of Python extension modules from the plug-in, and you write plug-in
 in python instead of in scheme.
 
 %prep
+
 %setup -q -n gimp-%version
 %patch0 -p1 -b .fix-str-fmt
 %patch1 -p1 -b .fix-linking
@@ -200,9 +197,10 @@ in python instead of in scheme.
 %patch17 -p1 -b .poppler-0.17
 %patch18 -p1 -b .psp-overflow
 %patch19 -p1 -b .CVE-2010-4540,4541,4542
+%patch20 -p1 -b .CVE-2011-2896
 
-%patch20 -p1 -b .autoreconf
-%patch21 -p1 -b .libpng15
+%patch100 -p1 -b .autoreconf
+%patch101 -p1 -b .libpng15
 
 #needed by patch1
 autoreconf -fi -I m4macros
