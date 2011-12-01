@@ -231,21 +231,21 @@ autoreconf -fi -I m4macros
 %make
 
 %install
-rm -fr $RPM_BUILD_ROOT
+rm -fr %{buildroot}
 
 %makeinstall_std
 
 #clean unpackaged files
-rm -f $RPM_BUILD_ROOT%{_libdir}/gimp/%{api_version}/*/*.a
+rm -f %{buildroot}%{_libdir}/gimp/%{api_version}/*/*.a
 find %buildroot -name \*la|xargs chmod 644
 
 # workaround broken help system                                                                               
-HELP_DIR=$RPM_BUILD_ROOT%_datadir/gimp/%api_version/help/C
+HELP_DIR=%{buildroot}%_datadir/gimp/%api_version/help/C
 [[ -d $HELP_DIR ]] || mkdir -p $HELP_DIR
 HELP_IDX=$HELP_DIR/introduction.html
 echo -e '<HTML><HEAD><TITLE>GIMP Base Library</HEAD>\n<BODY><UL>' > $HELP_IDX
 
-/bin/ls $RPM_BUILD_ROOT%_datadir/gtk-doc/html/*/index.html | sed -e "s@$RPM_BUILD_ROOT@@g" >> $HELP_IDX
+/bin/ls %{buildroot}%_datadir/gtk-doc/html/*/index.html | sed -e "s@%{buildroot}@@g" >> $HELP_IDX
 perl -pi -e 's!(.*/html/)([^/]*)(/index.html)!<LI><A HREF="\1\2\3">\2</A>!g' $HELP_IDX
 
 echo '</UL></BODY></HTML>' >> $HELP_IDX
@@ -261,10 +261,10 @@ echo %_libdir/gimp/%{api_version}/plug-ins >> %{buildroot}%{_libdir}/python%{pyv
 
 desktop-file-install --vendor="" \
   --add-category="X-MandrivaLinux-CrossDesktop" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f gimp20.lang
 %defattr(-,root,root,0755)
