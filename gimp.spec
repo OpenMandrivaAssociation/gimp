@@ -1,3 +1,4 @@
+%define _disable_ld_as_needed   1
 # optional compile flags
 %define enable_python 1
 %{?_without_python: %global enable_python 0}
@@ -165,7 +166,7 @@ in python instead of in scheme.
 autoreconf -fi -I m4macros
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--enable-default-binary=yes \
 	--enable-mp=yes		\
