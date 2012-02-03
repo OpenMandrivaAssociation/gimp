@@ -15,15 +15,14 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.6.11
-Release:	11
+Version:	2.6.12
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 URL:		http://www.gimp.org/
 Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
-Patch0:		gimp-2.6.4-fix-str-fmt.patch
 Patch1:		gimp-2.6.4-fix-linking.patch
 #gw fix name in desktop file and disable startup notification
 Patch6:		gimp-2.5.1-desktopentry.patch
@@ -35,31 +34,6 @@ Patch11:	gimp-2.6.7-jpeg-units.patch
 # https://bugzilla.gnome.org/show_bug.cgi?id=556896
 # "Dialogs don't get minimized with single image window"
 Patch12:	gimp-2.6.6-minimize-dialogs.patch
-# backport: fix building with "gold" linker
-Patch13:	gimp-2.6.8-gold.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=198367
-# https://bugzilla.gnome.org/show_bug.cgi?id=623045
-# make script-fu logging IPv6 aware
-Patch14:	gimp-2.6.10-script-fu-ipv6.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=651002
-# avoid traceback in colorxhtml plugin, upstreamed
-Patch15:	gimp-2.6.11-colorxhtml.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=667958
-# avoid traceback in pyslice plugin, upstreamed
-Patch16:	gimp-2.6.11-pyslice.patch
-# backport: work with poppler-0.17, upstreamed
-Patch17:	gimp-2.6.11-poppler-0.17.patch
-# backport: CVE-2010-4543, CVE-2011-1782
-# harden PSP plugin against bogus input data
-Patch18:	gimp-2.6.11-psp-overflow.patch
-# backport: CVE-2010-4540, CVE-2010-4541, CVE-2010-4542
-# fix buffer overflows in sphere-designer, gfig, lighting plugins
-Patch19:	gimp-2.6.11-CVE-2010-4540,4541,4542.patch
-Patch20:	gimp-2.6.11-CVE-2011-2896.diff
-# files changed by autoreconf after applying the above
-Patch100:	gimp-2.6.11-11-autoreconf.patch.bz2
-Patch101:	gimp-2.6.11-libpng15.diff
-
 BuildRequires: desktop-file-utils
 BuildRequires: gtk-doc >= 1.11-3mdv
 BuildRequires: imagemagick
@@ -272,4 +246,3 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/plug-ins/*.py
 %{_libdir}/python%{pyver}/site-packages/*.pth
 %endif
-
