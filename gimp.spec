@@ -7,7 +7,7 @@
 %{?_with_lzw: %global enable_lzw 1}
 
 %define api 2.0
-%define abi 2.6
+%define abi 2.8
 %define major 0
 %define libname	%mklibname %{name} %{api}_%{major}
 %define develname %mklibname -d %{name}%{api}
@@ -15,7 +15,7 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.6.12
+Version:	2.8.0
 Release:	1
 License:	GPLv2+
 Group:		Graphics
@@ -40,6 +40,7 @@ BuildRequires: imagemagick
 BuildRequires: intltool
 BuildRequires: perl
 BuildRequires: aalib-devel
+BuildRequires: jasper-devel
 BuildRequires: libwmf-devel >= 0.2.8
 BuildRequires: mng-devel
 BuildRequires: tiff-devel
@@ -162,8 +163,6 @@ autoreconf -fi -I m4macros
 %make
 
 %install
-rm -fr %{buildroot}
-
 %makeinstall_std
 
 #clean unpackaged files
