@@ -23,19 +23,10 @@ URL:		http://www.gimp.org/
 Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
-Patch1:		gimp-2.6.4-fix-linking.patch
-#gw fix name in desktop file and disable startup notification
-Patch6:		gimp-2.5.1-desktopentry.patch
-# distro specific: use xdg-open instead of firefox as web browser
-Patch10:	gimp-2.6.2-xdg-open.patch
-# https://bugzilla.gnome.org/show_bug.cgi?id=559081
-# "JPEG Save dialog preview should adjust size units"
-Patch11:	gimp-2.6.7-jpeg-units.patch
-# https://bugzilla.gnome.org/show_bug.cgi?id=556896
-# "Dialogs don't get minimized with single image window"
-Patch12:	gimp-2.6.6-minimize-dialogs.patch
+Patch0:		gimp-2.5.1-desktopentry.patch
+
 BuildRequires: desktop-file-utils
-BuildRequires: gtk-doc >= 1.11-3mdv
+BuildRequires: gtk-doc
 BuildRequires: imagemagick
 BuildRequires: intltool
 BuildRequires: perl
@@ -46,12 +37,11 @@ BuildRequires: mng-devel
 BuildRequires: tiff-devel
 BuildRequires: pkgconfig(alsa)
 Buildrequires: pkgconfig(dbus-glib-1)
-BuildRequires: pkgconfig(gegl)
+BuildRequires: pkgconfig(gegl-0.2)
 BuildRequires: pkgconfig(gtk+-2.0)
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(libart-2.0)
 BuildRequires: pkgconfig(lcms)
-BuildRequires: pkgconfig(libgnomeui-2.0)
 BuildRequires: pkgconfig(libpng15)
 BuildRequires: pkgconfig(librsvg-2.0)
 BuildRequires: pkgconfig(poppler-glib)
@@ -137,9 +127,6 @@ in python instead of in scheme.
 %setup -q
 %apply_patches
 
-#needed by patch1
-autoreconf -fi -I m4macros
-
 %build
 %configure \
 	--disable-static \
@@ -184,14 +171,15 @@ echo '</UL></BODY></HTML>' >> $HELP_IDX
 
 %if %{enable_python}
 chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*.py
-mkdir -p %{buildroot}%{_libdir}/python%{pyver}/site-packages
-echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{pyver}/site-packages/gimp.pth
-echo %{_libdir}/gimp/%{api}/plug-ins >> %{buildroot}%{_libdir}/python%{pyver}/site-packages/gimp.pth
+mkdir -p %{buildroot}%{_libdir}/python%{py_ver}/site-packages
+echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
+echo %{_libdir}/gimp/%{api}/plug-ins >> %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
 %endif
 
 desktop-file-install --vendor="" \
-  --add-category="X-MandrivaLinux-CrossDesktop" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
+	--add-category="X-MandrivaLinux-CrossDesktop" \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/applications/*
 
 %files -f gimp20.lang
 %doc AUTHORS NEWS README README.i18n docs/Wilber*
@@ -200,8 +188,6 @@ desktop-file-install --vendor="" \
 %{_bindir}/gimp-%{abi}
 %{_bindir}/gimp-console
 %{_bindir}/gimp-console-%{abi}
-%{_datadir}/applications/*
-%{_datadir}/gimp
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
@@ -209,11 +195,12 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*.py
+%{_datadir}/applications/*
+%{_datadir}/gimp
+%{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_mandir}/man1/gimp-*
 %{_mandir}/man1/gimp.*
 %{_mandir}/man5/gimp*
-%{_datadir}/icons/hicolor/*/apps/gimp.png
-%{_datadir}/icons/hicolor/scalable/apps/gimp.svg
 
 %files -n %{develname}
 %doc ChangeLog
@@ -243,5 +230,5 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/environ/pygimp.env
 %{_libdir}/gimp/%{api}/python
 %{_libdir}/gimp/%{api}/plug-ins/*.py
-%{_libdir}/python%{pyver}/site-packages/*.pth
+%{_libdir}/python%{py_ver}/site-packages/*.pth
 %endif
