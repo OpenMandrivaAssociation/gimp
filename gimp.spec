@@ -16,7 +16,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.8.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
 URL:		http://www.gimp.org/
@@ -25,44 +25,47 @@ Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 
-BuildRequires: desktop-file-utils
-BuildRequires: gtk-doc
-BuildRequires: imagemagick
-BuildRequires: intltool
-BuildRequires: perl
-BuildRequires: aalib-devel
-BuildRequires: jasper-devel
-BuildRequires: libwmf-devel >= 0.2.8
-BuildRequires: mng-devel
-BuildRequires: tiff-devel
-BuildRequires: pkgconfig(alsa)
-Buildrequires: pkgconfig(dbus-glib-1)
-BuildRequires: pkgconfig(gegl-0.2)
-BuildRequires: pkgconfig(gtk+-2.0)
-BuildRequires: pkgconfig(libexif)
-BuildRequires: pkgconfig(libart-2.0)
-BuildRequires: pkgconfig(lcms)
-BuildRequires: pkgconfig(libpng15)
-BuildRequires: pkgconfig(librsvg-2.0)
-BuildRequires: pkgconfig(poppler-glib)
+BuildRequires:	desktop-file-utils
+BuildRequires:	gtk-doc
+BuildRequires:	imagemagick
+BuildRequires:	intltool
+BuildRequires:	perl
+BuildRequires:	aalib-devel
+BuildRequires:	jasper-devel
+BuildRequires:	libwmf-devel >= 0.2.8
+BuildRequires:	mng-devel
+BuildRequires:	tiff-devel
+BuildRequires:	pkgconfig(alsa)
+Buildrequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(gegl-0.2)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(libexif)
+BuildRequires:	pkgconfig(libart-2.0)
+BuildRequires:	pkgconfig(lcms)
+BuildRequires:	pkgconfig(libpng15)
+BuildRequires:	pkgconfig(librsvg-2.0)
+BuildRequires:	pkgconfig(poppler-glib)
 # help browser
-BuildRequires: pkgconfig(webkit-1.0)
-BuildRequires: pkgconfig(xext)
-BuildRequires: pkgconfig(xfixes)
-BuildRequires: pkgconfig(xmu)
-BuildRequires: pkgconfig(xpm)
+BuildRequires:	pkgconfig(webkit-1.0)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xfixes)
+BuildRequires:	pkgconfig(xmu)
+BuildRequires:	pkgconfig(xpm)
 # mail plugin
-BuildRequires: sendmail-command
+BuildRequires:	sendmail-command
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
 %if %{enable_python}
-BuildRequires: pkgconfig(pygtk-2.0)
-BuildRequires: python-devel
+BuildRequires:	pkgconfig(pygtk-2.0)
+BuildRequires:	python-devel
 %endif
+# Require gegl, otherwise GIMP crashes on some operations
+# (at least on cage transformation)
+Requires:	gegl
 
 Requires(post,postun): desktop-file-utils
-Suggests: gimp-help-2
+Suggests:	gimp-help-2
 
 %rename gimp2.6
 
