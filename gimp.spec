@@ -42,7 +42,7 @@ BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(lcms)
-BuildRequires:	pkgconfig(libpng15)
+BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(poppler-glib)
 # help browser
