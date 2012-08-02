@@ -40,6 +40,7 @@ Buildrequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gegl-0.2)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(lcms)
