@@ -1,0 +1,12 @@
+diff -p -up gimp-2.5.1/desktop/gimp.desktop.in.in.desktopentry gimp-2.5.1/desktop/gimp.desktop.in.in
+--- gimp-2.5.1/desktop/gimp.desktop.in.in.desktopentry	2008-06-11 17:22:33.000000000 +0200
++++ gimp-2.5.1/desktop/gimp.desktop.in.in	2008-06-24 12:26:52.000000000 +0200
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Type=Application
+-_Name=GNU Image Manipulation Program
++_Name=GIMP
+ _GenericName=Image Editor
+ _Comment=Create images and edit photographs
+ Exec=@GIMP_COMMAND@ %U
