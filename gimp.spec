@@ -35,6 +35,9 @@ BuildRequires:	jasper-devel
 BuildRequires:	libwmf-devel >= 0.2.8
 BuildRequires:	mng-devel
 BuildRequires:	tiff-devel
+BuildRequires:	bzip2-devel
+BuildRequires:	ghostscript-devel
+BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gegl-0.2)
@@ -47,6 +50,7 @@ BuildRequires:	pkgconfig(lcms)
 BuildRequires:	libpng-devel
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(poppler-glib)
+BuildRequires:	pkgconfig(libcurl)
 # help browser
 BuildRequires:	pkgconfig(webkit-1.0)
 BuildRequires:	pkgconfig(xext)
