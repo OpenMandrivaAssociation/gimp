@@ -26,6 +26,7 @@ Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 
 BuildRequires:	desktop-file-utils
+BuildRequires:	iso-codes
 BuildRequires:	gtk-doc
 BuildRequires:	imagemagick
 BuildRequires:	intltool
