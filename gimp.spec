@@ -9,14 +9,14 @@
 %define api 2.0
 %define abi 2.8
 %define major 0
-%define libname	%mklibname %{name} %{api}_%{major}
+%define libname %mklibname %{name} %{api}_%{major}
 %define develname %mklibname -d %{name}%{api}
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.8.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
 URL:		http://www.gimp.org/
@@ -36,7 +36,7 @@ BuildRequires:	libwmf-devel >= 0.2.8
 BuildRequires:	mng-devel
 BuildRequires:	tiff-devel
 BuildRequires:	pkgconfig(alsa)
-Buildrequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gegl-0.2)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
 BuildRequires:	pkgconfig(gtk+-2.0)
@@ -66,7 +66,7 @@ BuildRequires:	python-devel
 # (at least on cage transformation)
 Requires:	gegl
 
-Requires(post,postun): desktop-file-utils
+Requires(post,postun):	desktop-file-utils
 Suggests:	gimp-help-2
 
 %rename gimp2.6
@@ -133,7 +133,7 @@ in python instead of in scheme.
 %apply_patches
 
 %build
-%configure \
+%configure2_5x \
 	--disable-static \
 	--enable-default-binary=yes \
 	--enable-mp=yes		\
