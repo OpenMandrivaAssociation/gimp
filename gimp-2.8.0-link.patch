@@ -1,0 +1,22 @@
+--- devel-docs/tools/Makefile.am.link	2012-05-03 04:02:30.000000000 +0000
++++ devel-docs/tools/Makefile.am	2012-05-03 04:02:46.000000000 +0000
+@@ -34,7 +34,7 @@
+ 	$(libgimpcolor)		\
+ 	$(libgimpbase)		\
+ 	$(GTK_LIBS)		\
+-	$(X_LIBS) -lX11 -lXext
++	$(X_LIBS) -lX11 -lXext -lm
+ 
+ 
+ EXTRA_PROGRAMS = doc-shooter
+--- devel-docs/tools/Makefile.in.link	2012-05-03 04:02:36.000000000 +0000
++++ devel-docs/tools/Makefile.in	2012-05-03 04:02:59.000000000 +0000
+@@ -465,7 +465,7 @@
+ 	$(libgimpcolor)		\
+ 	$(libgimpbase)		\
+ 	$(GTK_LIBS)		\
+-	$(X_LIBS) -lX11 -lXext
++	$(X_LIBS) -lX11 -lXext -lm
+ 
+ EXTRA_DIST = README.shooter
+ all: all-am
