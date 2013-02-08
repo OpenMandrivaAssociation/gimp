@@ -136,7 +136,10 @@ in python instead of in scheme.
 %prep
 
 %setup -q
-%apply_patches
+#apply_patches
+
+%patch0 -p1
+%patch1 -p0
 
 %build
 %configure2_5x \
