@@ -42,17 +42,6 @@
  
  color_selector_libadd = $(libgimpcolor) $(modules_libadd)
  display_filter_libadd = $(libgimpbase) $(libgimpconfig) $(libgimpcolor) $(modules_libadd)
---- configure.ac.orig	2013-02-16 18:25:47.124318951 +0000
-+++ configure.ac	2013-02-16 18:26:00.323319486 +0000
-@@ -1774,7 +1774,7 @@
-   # Assume the link library is in $exec_prefix/libs
-   # This might be able to be figured out from distutils, but it's
-   # not documented so we won't rely on internal implementation
--  PYLINK_LIBS=
-+  PYLINK_LIBS="-lpython2.7"
-   if test "x$platform_win32" = "xyes"; then
-     PYBIN_PATH="$py_exec_prefix\pythonw.exe"
-     PYTHON_INCLUDES=`echo "$PYTHON_INCLUDES" | sed -e 's/\\\\/\\//g'`
 --- configure.orig	2013-02-16 18:24:57.432316941 +0000
 +++ configure	2013-02-16 18:25:13.400317587 +0000
 @@ -22393,7 +22393,7 @@
