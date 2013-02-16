@@ -24,7 +24,7 @@ Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
-Patch1:		gimp-2.8.0-link.patch
+Patch1:		gimp-2.8.4-link.patch
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
