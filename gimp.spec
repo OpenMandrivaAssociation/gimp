@@ -6,20 +6,28 @@
 %define enable_lzw 0
 %{?_with_lzw: %global enable_lzw 1}
 
-%define api 2.0
-%define abi 2.8
-%define major 0
-%define libname %mklibname %{name} %{api}_%{major}
-%define develname %mklibname -d %{name}%{api}
+%define	api	2.0
+%define	abi	2.8
+%define	major	0
+%define	libname 	%mklibname %{name} %{api}_%{major}
+%define	libbase		%mklibname gimpbase %{api} %{major}
+%define	libcolor	%mklibname gimpcolor %{api} %{major}
+%define	libconfig	%mklibname gimpconfig %{api} %{major}
+%define	libmath		%mklibname gimpmath %{api} %{major}
+%define	libmodule	%mklibname gimpmodule %{api} %{major}
+%define	libthumb	%mklibname gimpthumb %{api} %{major}
+%define	libui		%mklibname gimpui %{api} %{major}
+%define	libwidgets	%mklibname gimpwidgets %{api} %{major}
+%define	devname 	%mklibname -d %{name}%{api}
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.8.4
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
-URL:		http://www.gimp.org/
+Url:		http://www.gimp.org/
 Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
@@ -49,7 +57,7 @@ BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(lcms)
-BuildRequires:	libpng-devel
+BuildRequires:	pkgconfig(libpng15)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(libcurl)
@@ -60,19 +68,18 @@ BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xmu)
 BuildRequires:	pkgconfig(xpm)
 # mail plugin
-BuildRequires:	sendmail-command
+BuildRequires:	postfix #sendmail-command
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
 %if %{enable_python}
 BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	python-devel
+BuildRequires:	pkgconfig(python)
 %endif
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
-Requires:	gegl
-
 Requires(post,postun):	desktop-file-utils
+Requires:	gegl
 Suggests:	gimp-help-2
 
 %rename gimp2.6
@@ -96,20 +103,11 @@ fonts have unusual licensing requirements; all the licenses are documented
 in the package.  Get them in ftp://ftp.gimp.org/pub/gimp/fonts/ if you are so
 inclined.  Alternatively, choose fonts which exist on your system before
 running the scripts.
+r
 
 Build Options:
 --without python        Disable pygimp (default enabled)
 --with    lzw           Enable LZW compression in GIF (default disabled)
-
-%package -n %{develname}
-Summary:	GIMP plugin and extension development kit
-Group:		Development/GNOME and GTK+
-License:	LGPLv2+
-Requires:	%{libname} >= %{EVRD}
-Provides:	gimp-devel = %{version}-%{release}
-
-%description -n %{develname}
-Static libraries and header files for writing GIMP plugins and extensions.
 
 %package -n %{libname}
 Summary:	GIMP libraries
@@ -117,9 +115,97 @@ Group:		System/Libraries
 License:	LGPLv2+
 
 %description -n %{libname}
-This is the library that provides core GIMP functionality.
-It enable other programs to use GIMP's features but is mainly intended
-to be used by the GIMP and its "external" plugins.
+This package contains a shared library for %{name}.
+
+%package -n %{libbase}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libbase}
+This package contains a shared library for %{name}.
+
+%package -n %{libcolor}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libcolor}
+This package contains a shared library for %{name}.
+
+%package -n %{libconfig}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libconfig}
+This package contains a shared library for %{name}.
+
+%package -n %{libmath}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libmath}
+This package contains a shared library for %{name}.
+
+%package -n %{libmodule}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libmodule}
+This package contains a shared library for %{name}.
+
+%package -n %{libthumb}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libthumb}
+This package contains a shared library for %{name}.
+
+%package -n %{libui}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libui}
+This package contains a shared library for %{name}.
+
+%package -n %{libwidgets}
+Summary:	GIMP libraries
+Group:		System/Libraries
+License:	LGPLv2+
+Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
+
+%description -n %{libwidgets}
+This package contains a shared library for %{name}.
+
+%package -n %{devname}
+Summary:	GIMP plugin and extension development kit
+Group:		Development/GNOME and GTK+
+License:	LGPLv2+
+Requires:	%{libname} = %{EVRD}
+Requires:	%{libbase} = %{EVRD}
+Requires:	%{libcolor} = %{EVRD}
+Requires:	%{libconfig} = %{EVRD}
+Requires:	%{libmath} = %{EVRD}
+Requires:	%{libmodule} = %{EVRD}
+Requires:	%{libthumb} = %{EVRD}
+Requires:	%{libui} = %{EVRD}
+Requires:	%{libwidgets} = %{EVRD}
+Provides:	%{name}-devel = %{version}-%{release}
+
+%description -n %{devname}
+Development libraries and header files for writing GIMP plugins and extensions.
 
 %package python
 Summary:	GIMP python extension
@@ -136,10 +222,7 @@ in python instead of in scheme.
 %prep
 
 %setup -q
-#apply_patches
-
-%patch0 -p1
-%patch1 -p0
+%apply_patches
 
 %build
 %configure2_5x \
@@ -167,8 +250,8 @@ in python instead of in scheme.
 %makeinstall_std
 
 #clean unpackaged files
-rm -f %{buildroot}%{_libdir}/gimp/%{api}/*/*.a
-find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
+#rm -f %{buildroot}%{_libdir}/gimp/%{api}/*/*.a
+#find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 # workaround broken help system
 HELP_DIR=%{buildroot}%{_datadir}/gimp/%api/help/C
@@ -216,7 +299,35 @@ desktop-file-install --vendor="" \
 %{_mandir}/man1/gimp.*
 %{_mandir}/man5/gimp*
 
-%files -n %{develname}
+%files -n %{libname}
+%{_libdir}/libgimp-%{api}.so.%{major}*
+
+%files -n %{libbase}
+%{_libdir}/libgimpbase-%{api}.so.%{major}*
+
+%files -n %{libcolor}
+%{_libdir}/libgimpcolor-%{api}.so.%{major}*
+
+%files -n %{libconfig}
+%{_libdir}/libgimpconfig-%{api}.so.%{major}*
+
+%files -n %{libmath}
+%{_libdir}/libgimpmath-%{api}.so.%{major}*
+
+%files -n %{libmodule}
+%{_libdir}/libgimpmodule-%{api}.so.%{major}*
+
+%files -n %{libthumb}
+%{_libdir}/libgimpthumb-%{api}.so.%{major}*
+
+%files -n %{libui}
+%{_libdir}/libgimpui-%{api}.so.%{major}*
+
+%files -n %{libwidgets}
+%{_libdir}/libgimpwidgets-%{api}.so.%{major}*
+
+%if %{enable_python}
+%files -n %{devname}
 %doc ChangeLog
 %doc %{_datadir}/gtk-doc/html/*
 %{_bindir}/gimptool-*
@@ -226,23 +337,10 @@ desktop-file-install --vendor="" \
 %{_libdir}/pkgconfig/*
 %{_mandir}/man1/gimptool-*
 
-%files -n %{libname}
-# explicitly list all libs to avoid old libtool issue
-# MD these should be split up
-%{_libdir}/libgimpconfig-%{api}.so.%{major}*
-%{_libdir}/libgimp-%{api}.so.%{major}*
-%{_libdir}/libgimpthumb-%{api}.so.%{major}*
-%{_libdir}/libgimpbase-%{api}.so.%{major}*
-%{_libdir}/libgimpcolor-%{api}.so.%{major}*
-%{_libdir}/libgimpmath-%{api}.so.%{major}*
-%{_libdir}/libgimpmodule-%{api}.so.%{major}*
-%{_libdir}/libgimpui-%{api}.so.%{major}*
-%{_libdir}/libgimpwidgets-%{api}.so.%{major}*
-
-%if %{enable_python}
 %files python
 %{_libdir}/gimp/%{api}/environ/pygimp.env
 %{_libdir}/gimp/%{api}/python
 %{_libdir}/gimp/%{api}/plug-ins/*.py
 %{_libdir}/python%{py_ver}/site-packages/*.pth
 %endif
+

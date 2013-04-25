@@ -1,5 +1,5 @@
---- devel-docs/tools/Makefile.am.link	2012-05-03 04:02:30.000000000 +0000
-+++ devel-docs/tools/Makefile.am	2012-05-03 04:02:46.000000000 +0000
+--- ./devel-docs/tools/Makefile.am.link	2012-05-03 04:02:30.000000000 +0000
++++ ./devel-docs/tools/Makefile.am	2012-05-03 04:02:46.000000000 +0000
 @@ -34,7 +34,7 @@
  	$(libgimpcolor)		\
  	$(libgimpbase)		\
@@ -9,8 +9,8 @@
  
  
  EXTRA_PROGRAMS = doc-shooter
---- devel-docs/tools/Makefile.in.link	2012-05-03 04:02:36.000000000 +0000
-+++ devel-docs/tools/Makefile.in	2012-05-03 04:02:59.000000000 +0000
+--- ./devel-docs/tools/Makefile.in.link	2012-05-03 04:02:36.000000000 +0000
++++ ./devel-docs/tools/Makefile.in	2012-05-03 04:02:59.000000000 +0000
 @@ -465,7 +465,7 @@
  	$(libgimpcolor)		\
  	$(libgimpbase)		\
@@ -20,8 +20,8 @@
  
  EXTRA_DIST = README.shooter
  all: all-am
---- modules/Makefile.in.orig	2013-02-16 17:27:09.385207251 +0000
-+++ modules/Makefile.in	2013-02-16 17:27:18.254207609 +0000
+--- ./modules/Makefile.in.orig	2013-02-16 17:27:09.385207251 +0000
++++ ./modules/Makefile.in	2013-02-16 17:27:18.254207609 +0000
 @@ -631,7 +631,7 @@
  	$(controller_linux_input_module)	\
  	$(controller_dx_dinput_module)
@@ -31,8 +31,8 @@
  color_selector_libadd = $(libgimpcolor) $(modules_libadd)
  display_filter_libadd = $(libgimpbase) $(libgimpconfig) $(libgimpcolor) $(modules_libadd)
  controller_libadd = $(modules_libadd)
---- modules/Makefile.am.orig	2013-02-16 17:26:30.284205668 +0000
-+++ modules/Makefile.am	2013-02-16 17:26:36.500205920 +0000
+--- ./modules/Makefile.am.orig	2013-02-16 17:26:30.284205668 +0000
++++ ./modules/Makefile.am	2013-02-16 17:26:36.500205920 +0000
 @@ -49,7 +49,7 @@
  	$(controller_dx_dinput_module)
  
@@ -42,8 +42,8 @@
  
  color_selector_libadd = $(libgimpcolor) $(modules_libadd)
  display_filter_libadd = $(libgimpbase) $(libgimpconfig) $(libgimpcolor) $(modules_libadd)
---- configure.orig	2013-02-16 18:24:57.432316941 +0000
-+++ configure	2013-02-16 18:25:13.400317587 +0000
+--- ./configure.orig	2013-02-16 18:24:57.432316941 +0000
++++ ./configure	2013-02-16 18:25:13.400317587 +0000
 @@ -22393,7 +22393,7 @@
    # Assume the link library is in $exec_prefix/libs
    # This might be able to be figured out from distutils, but it's
