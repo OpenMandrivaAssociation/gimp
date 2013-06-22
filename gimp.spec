@@ -23,8 +23,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.8.4
-Release:	2
+Version:	2.8.6
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -103,7 +103,7 @@ fonts have unusual licensing requirements; all the licenses are documented
 in the package.  Get them in ftp://ftp.gimp.org/pub/gimp/fonts/ if you are so
 inclined.  Alternatively, choose fonts which exist on your system before
 running the scripts.
-r
+
 
 Build Options:
 --without python        Disable pygimp (default enabled)
@@ -112,7 +112,6 @@ Build Options:
 %package -n %{libname}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 
 %description -n %{libname}
 This package contains a shared library for %{name}.
@@ -120,7 +119,6 @@ This package contains a shared library for %{name}.
 %package -n %{libbase}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libbase}
@@ -129,7 +127,6 @@ This package contains a shared library for %{name}.
 %package -n %{libcolor}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libcolor}
@@ -138,7 +135,6 @@ This package contains a shared library for %{name}.
 %package -n %{libconfig}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libconfig}
@@ -147,7 +143,6 @@ This package contains a shared library for %{name}.
 %package -n %{libmath}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libmath}
@@ -156,7 +151,6 @@ This package contains a shared library for %{name}.
 %package -n %{libmodule}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libmodule}
@@ -165,7 +159,6 @@ This package contains a shared library for %{name}.
 %package -n %{libthumb}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libthumb}
@@ -174,7 +167,6 @@ This package contains a shared library for %{name}.
 %package -n %{libui}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libui}
@@ -183,7 +175,6 @@ This package contains a shared library for %{name}.
 %package -n %{libwidgets}
 Summary:	GIMP libraries
 Group:		System/Libraries
-License:	LGPLv2+
 Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libwidgets}
@@ -192,7 +183,6 @@ This package contains a shared library for %{name}.
 %package -n %{devname}
 Summary:	GIMP plugin and extension development kit
 Group:		Development/GNOME and GTK+
-License:	LGPLv2+
 Requires:	%{libname} = %{EVRD}
 Requires:	%{libbase} = %{EVRD}
 Requires:	%{libcolor} = %{EVRD}
@@ -220,7 +210,6 @@ of Python extension modules from the plug-in, and you write plug-in
 in python instead of in scheme.
 
 %prep
-
 %setup -q
 %apply_patches
 
@@ -228,16 +217,16 @@ in python instead of in scheme.
 %configure2_5x \
 	--disable-static \
 	--enable-default-binary=yes \
-	--enable-mp=yes		\
+	--enable-mp=yes \
 %if %{enable_python}
-	--enable-python=yes	\
+	--enable-python=yes \
 %else
-	--enable-python=no	\
+	--enable-python=no \
 %endif
-%if %enable_lzw
-	--with-gif-compression=lzw	\
+%if %{enable_lzw}
+	--with-gif-compression=lzw \
 %else
-	--with-gif-compression=rle	\
+	--with-gif-compression=rle \
 %endif
 	--without-hal \
 	--with-gvfs \
