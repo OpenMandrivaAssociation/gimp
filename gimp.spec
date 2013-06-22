@@ -57,7 +57,7 @@ BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(lcms)
-BuildRequires:	pkgconfig(libpng15)
+BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(libcurl)
@@ -78,7 +78,6 @@ BuildRequires:	pkgconfig(python)
 %endif
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
-Requires(post,postun):	desktop-file-utils
 Requires:	gegl
 Suggests:	gimp-help-2
 
