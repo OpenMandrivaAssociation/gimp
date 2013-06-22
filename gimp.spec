@@ -213,6 +213,7 @@ in python instead of in scheme.
 %apply_patches
 
 %build
+autoreconf -fi
 %configure2_5x \
 	--disable-static \
 	--enable-default-binary=yes \
