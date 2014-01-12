@@ -20,8 +20,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.8.6
-Release:	5
+Version:	2.8.10
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -275,6 +275,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/plug-ins
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*.py
 %{_datadir}/applications/*
+%{_datadir}/appdata/*.appdata.xml
 %{_datadir}/gimp
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_mandir}/man1/gimp-*
