@@ -3,9 +3,6 @@
 %define enable_python 1
 %{?_without_python: %global enable_python 0}
 
-%define enable_lzw 0
-%{?_with_lzw: %global enable_lzw 1}
-
 %define	api	2.0
 %define	abi	2.8
 %define	major	0
@@ -223,11 +220,7 @@ autoreconf -fi
 %else
 	--enable-python=no \
 %endif
-%if %{enable_lzw}
 	--with-gif-compression=lzw \
-%else
-	--with-gif-compression=rle \
-%endif
 	--without-hal \
 	--with-gvfs \
 	--with-dbus \
