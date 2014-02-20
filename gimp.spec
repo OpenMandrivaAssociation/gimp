@@ -1,10 +1,5 @@
-#define _disable_ld_as_needed   1
-# optional compile flags
-%define enable_python 1
-%{?_without_python: %global enable_python 0}
-
-%define enable_lzw 1
-%{?_with_lzw: %global enable_lzw 1}
+%bcond_without	python
+%bcond_without	lzw
 
 %define	api	2.0
 %define	abi	2.8
@@ -72,7 +67,7 @@ BuildRequires:	postfix #sendmail-command
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
-%if %{enable_python}
+%if %{with python}
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(python)
 %endif
@@ -215,15 +210,14 @@ in python instead of in scheme.
 %build
 autoreconf -fi
 %configure2_5x \
-	--disable-static \
 	--enable-default-binary=yes \
 	--enable-mp=yes \
-%if %{enable_python}
+%if %{with python}
 	--enable-python=yes \
 %else
 	--enable-python=no \
 %endif
-%if %{enable_lzw}
+%if %{with lzw}
 	--with-gif-compression=lzw \
 %else
 	--with-gif-compression=rle \
@@ -255,7 +249,7 @@ echo '</UL></BODY></HTML>' >> $HELP_IDX
 
 %find_lang gimp20 --all-name
 
-%if %{enable_python}
+%if %{with python}
 chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*.py
 mkdir -p %{buildroot}%{_libdir}/python%{py_ver}/site-packages
 echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
@@ -315,7 +309,7 @@ desktop-file-install --vendor="" \
 %files -n %{libwidgets}
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
-%if %{enable_python}
+%if %{with python}
 %files -n %{devname}
 %doc ChangeLog
 %doc %{_datadir}/gtk-doc/html/*
