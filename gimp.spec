@@ -264,10 +264,6 @@ autoreconf -fiv
 %install
 %makeinstall_std
 
-#clean unpackaged files
-#rm -f %{buildroot}%{_libdir}/gimp/%{api}/*/*.a
-#find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
-
 # workaround broken help system
 HELP_DIR=%{buildroot}%{_datadir}/gimp/%api/help/C
 [[ -d $HELP_DIR ]] || mkdir -p $HELP_DIR
