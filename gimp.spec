@@ -28,6 +28,10 @@ Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		gimp-2.8.4-link.patch
+#gw fix name in desktop file and disable startup notification
+Patch2:		gimp-2.5.1-desktopentry.patch
+Patch3:		gimp-2.8-CVE-2013-1913.patch
+Patch4:		gimp-2.8-CVE-2013-1978.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
