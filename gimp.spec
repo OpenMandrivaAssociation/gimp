@@ -222,6 +222,7 @@ autoreconf -fiv
 %build
 %configure2_5x \
 	--enable-default-binary=yes \
+	--enable-gimp-console \
 	--enable-mp=yes \
 %if %{with python}
 	--enable-python=yes \
