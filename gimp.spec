@@ -308,6 +308,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/plug-ins
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*.py
 %{_datadir}/applications/*
+%{_datadir}/appdata/gimp.appdata.xml
 %{_datadir}/gimp
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_mandir}/man1/gimp-*
