@@ -206,9 +206,9 @@ in python instead of in scheme.
 %prep
 %setup -q
 %apply_patches
+autoreconf -fiv
 
 %build
-autoreconf -fi
 %configure2_5x \
 	--enable-default-binary=yes \
 	--enable-mp=yes \
