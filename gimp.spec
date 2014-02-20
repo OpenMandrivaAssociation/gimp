@@ -237,7 +237,8 @@ autoreconf -fiv
 	--without-hal \
 	--with-gvfs \
 	--with-dbus \
-	--enable-gtk-doc=yes
+	--enable-gtk-doc=yes \
+	--with-pdbgen
 
 %make
 
