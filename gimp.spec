@@ -29,6 +29,37 @@ Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		gimp-2.8.4-link.patch
 
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libart-2.0)
+BuildRequires:	pkgconfig(atk) >= 2.2.0
+BuildRequires:	pkgconfig(babl) >= 0.1.10
+BuildRequires:	pkgconfig(cairo) >= 1.10.2
+BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
+BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
+BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
+BuildRequires:	pkgconfig(gegl-0.2) >= 0.2.0
+BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
+BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
+BuildRequires:	pkgconfig(gmodule-no-export-2.0)
+BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
+BuildRequires:	pkgconfig(gudev-1.0) >= 167
+BuildRequires:	pkgconfig(iso-codes)
+BuildRequires:	pkgconfig(lcms) >= 1.16
+BuildRequires:	pkgconfig(libcurl) >= 7.15.1
+BuildRequires:	pkgconfig(libexif) >= 0.6.15
+BuildRequires:	pkgconfig(libpng) >= 1.2.37
+BuildRequires:	pkgconfig(librsvg-2.0) >= 2.36.0
+BuildRequires:	pkgconfig(pangocairo) >= 1.29.4
+BuildRequires:	pkgconfig(pangoft2)
+BuildRequires:	pkgconfig(poppler-glib) >= 0.12.4
+BuildRequires:	pkgconfig(webkit-1.0) >= 1.6.1
+BuildRequires:	pkgconfig(xcursor)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xfixes)
+BuildRequires:	pkgconfig(xmu)
+BuildRequires:	pkgconfig(xpm)
+
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
 BuildRequires:	gtk-doc
@@ -42,28 +73,8 @@ BuildRequires:	mng-devel
 BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
-BuildRequires:	pkgconfig(gudev-1.0)
-BuildRequires:	pkgconfig(alsa)
-BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(gegl-0.2)
-BuildRequires:	pkgconfig(atk) >= 2.2.0
-BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
-BuildRequires:	pkgconfig(libexif)
-BuildRequires:	pkgconfig(libart-2.0)
-BuildRequires:	pkgconfig(lcms)
-BuildRequires:	pkgconfig(libpng)
-BuildRequires:	pkgconfig(librsvg-2.0)
-BuildRequires:	pkgconfig(poppler-glib)
-BuildRequires:	pkgconfig(libcurl)
-# help browser
-BuildRequires:	pkgconfig(webkit-1.0)
-BuildRequires:	pkgconfig(xext)
-BuildRequires:	pkgconfig(xfixes)
-BuildRequires:	pkgconfig(xmu)
-BuildRequires:	pkgconfig(xpm)
 # mail plugin
-BuildRequires:	postfix #sendmail-command
+BuildRequires:	sendmail-command
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
@@ -101,7 +112,7 @@ running the scripts.
 
 Build Options:
 --without python        Disable pygimp (default enabled)
---with    lzw           Enable LZW compression in GIF (default disabled)
+--without lzw           Disable LZW compression in GIF (default disabled)
 
 %package -n %{libname}
 Summary:	GIMP libraries
