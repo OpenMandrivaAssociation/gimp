@@ -238,7 +238,26 @@ autoreconf -fiv
 	--with-gvfs \
 	--with-dbus \
 	--enable-gtk-doc=yes \
-	--with-pdbgen
+	--with-pdbgen \
+	--with-print \
+    	--with-lcms=lcms2 \
+	--with-aa \
+	--with-linux-input \
+	--with-poppler \
+	--with-webkit \
+    	--with-libtiff \
+	--with-libjpeg \
+	--with-libpng \
+	--with-libmng \
+	--with-libjasper \
+	--with-libexif \
+	--with-librsvg \
+	--with-libxpm \
+	--with-gvfs \
+	--with-alsa \
+	--with-dbus \
+	--with-script-fu \
+	--with-cairo-pdf
 
 %make
 
