@@ -1,10 +1,5 @@
-#define _disable_ld_as_needed   1
-# optional compile flags
-%define enable_python 1
-%{?_without_python: %global enable_python 0}
-
-%define enable_lzw 0
-%{?_with_lzw: %global enable_lzw 1}
+%bcond_without	python
+%bcond_without	lzw
 
 %define	api	2.0
 %define	abi	2.8
@@ -23,8 +18,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.8.6
-Release:	2
+Version:	2.8.10
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -33,6 +28,39 @@ Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		gimp-2.8.4-link.patch
+Patch2:		gimp-2.8-CVE-2013-1913.patch
+Patch3:		gimp-2.8-CVE-2013-1978.patch
+
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libart-2.0)
+BuildRequires:	pkgconfig(atk) >= 2.2.0
+BuildRequires:	pkgconfig(babl) >= 0.1.10
+BuildRequires:	pkgconfig(cairo) >= 1.10.2
+BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
+BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
+BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
+BuildRequires:	pkgconfig(gegl-0.2) >= 0.2.0
+BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
+BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
+BuildRequires:	pkgconfig(gmodule-no-export-2.0)
+BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
+BuildRequires:	pkgconfig(gudev-1.0) >= 167
+BuildRequires:	pkgconfig(iso-codes)
+BuildRequires:	pkgconfig(lcms) >= 1.16
+BuildRequires:	pkgconfig(libcurl) >= 7.15.1
+BuildRequires:	pkgconfig(libexif) >= 0.6.15
+BuildRequires:	pkgconfig(libpng) >= 1.2.37
+BuildRequires:	pkgconfig(librsvg-2.0) >= 2.36.0
+BuildRequires:	pkgconfig(pangocairo) >= 1.29.4
+BuildRequires:	pkgconfig(pangoft2)
+BuildRequires:	pkgconfig(poppler-glib) >= 0.12.4
+BuildRequires:	pkgconfig(webkit-1.0) >= 1.6.1
+BuildRequires:	pkgconfig(xcursor)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xfixes)
+BuildRequires:	pkgconfig(xmu)
+BuildRequires:	pkgconfig(xpm)
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
@@ -47,32 +75,12 @@ BuildRequires:	mng-devel
 BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
-BuildRequires:	pkgconfig(gudev-1.0)
-BuildRequires:	pkgconfig(alsa)
-BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(gegl-0.2)
-BuildRequires:	pkgconfig(atk) >= 2.2.0
-BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
-BuildRequires:	pkgconfig(libexif)
-BuildRequires:	pkgconfig(libart-2.0)
-BuildRequires:	pkgconfig(lcms)
-BuildRequires:	pkgconfig(libpng)
-BuildRequires:	pkgconfig(librsvg-2.0)
-BuildRequires:	pkgconfig(poppler-glib)
-BuildRequires:	pkgconfig(libcurl)
-# help browser
-BuildRequires:	pkgconfig(webkit-1.0)
-BuildRequires:	pkgconfig(xext)
-BuildRequires:	pkgconfig(xfixes)
-BuildRequires:	pkgconfig(xmu)
-BuildRequires:	pkgconfig(xpm)
 # mail plugin
-BuildRequires:	postfix #sendmail-command
+BuildRequires:	sendmail-command
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
-%if %{enable_python}
+%if %{with python}
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(python)
 %endif
@@ -106,7 +114,7 @@ running the scripts.
 
 Build Options:
 --without python        Disable pygimp (default enabled)
---with    lzw           Enable LZW compression in GIF (default disabled)
+--without lzw           Disable LZW compression in GIF (default disabled)
 
 %package -n %{libname}
 Summary:	GIMP libraries
@@ -211,19 +219,19 @@ in python instead of in scheme.
 %prep
 %setup -q
 %apply_patches
+autoreconf -fiv
 
 %build
-autoreconf -fi
 %configure2_5x \
-	--disable-static \
 	--enable-default-binary=yes \
+	--enable-gimp-console \
 	--enable-mp=yes \
-%if %{enable_python}
+%if %{with python}
 	--enable-python=yes \
 %else
 	--enable-python=no \
 %endif
-%if %{enable_lzw}
+%if %{with lzw}
 	--with-gif-compression=lzw \
 %else
 	--with-gif-compression=rle \
@@ -231,16 +239,32 @@ autoreconf -fi
 	--without-hal \
 	--with-gvfs \
 	--with-dbus \
-	--enable-gtk-doc=yes
+	--enable-gtk-doc=yes \
+	--with-pdbgen \
+	--with-print \
+    	--with-lcms=lcms2 \
+	--with-aa \
+	--with-linux-input \
+	--with-poppler \
+	--with-webkit \
+    	--with-libtiff \
+	--with-libjpeg \
+	--with-libpng \
+	--with-libmng \
+	--with-libjasper \
+	--with-libexif \
+	--with-librsvg \
+	--with-libxpm \
+	--with-gvfs \
+	--with-alsa \
+	--with-dbus \
+	--with-script-fu \
+	--with-cairo-pdf
 
 %make
 
 %install
 %makeinstall_std
-
-#clean unpackaged files
-#rm -f %{buildroot}%{_libdir}/gimp/%{api}/*/*.a
-#find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 # workaround broken help system
 HELP_DIR=%{buildroot}%{_datadir}/gimp/%api/help/C
@@ -255,7 +279,7 @@ echo '</UL></BODY></HTML>' >> $HELP_IDX
 
 %find_lang gimp20 --all-name
 
-%if %{enable_python}
+%if %{with python}
 chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*.py
 mkdir -p %{buildroot}%{_libdir}/python%{py_ver}/site-packages
 echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
@@ -282,6 +306,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/plug-ins
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*.py
 %{_datadir}/applications/*
+%{_datadir}/appdata/gimp.appdata.xml
 %{_datadir}/gimp
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_mandir}/man1/gimp-*
@@ -315,7 +340,7 @@ desktop-file-install --vendor="" \
 %files -n %{libwidgets}
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
-%if %{enable_python}
+%if %{with python}
 %files -n %{devname}
 %doc ChangeLog
 %doc %{_datadir}/gtk-doc/html/*
