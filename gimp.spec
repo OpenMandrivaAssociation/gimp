@@ -30,6 +30,7 @@ Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		gimp-2.8.4-link.patch
 Patch2:		gimp-2.8-CVE-2013-1913.patch
 Patch3:		gimp-2.8-CVE-2013-1978.patch
+Patch4:		gimp-2.8.10-gegl-0.3-fix.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
@@ -40,7 +41,7 @@ BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
-BuildRequires:	pkgconfig(gegl-0.2) >= 0.2.0
+BuildRequires:	pkgconfig(gegl-0.3)
 BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(gmodule-no-export-2.0)
