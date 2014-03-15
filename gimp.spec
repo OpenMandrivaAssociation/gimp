@@ -1,5 +1,4 @@
 %bcond_without	python
-%bcond_without	lzw
 
 %define	api	2.0
 %define	abi	2.8
@@ -115,7 +114,6 @@ running the scripts.
 
 Build Options:
 --without python        Disable pygimp (default enabled)
---without lzw           Disable LZW compression in GIF (default disabled)
 
 %package -n %{libname}
 Summary:	GIMP libraries
@@ -232,11 +230,7 @@ autoreconf -fiv
 %else
 	--enable-python=no \
 %endif
-%if %{with lzw}
 	--with-gif-compression=lzw \
-%else
-	--with-gif-compression=rle \
-%endif
 	--without-hal \
 	--with-gvfs \
 	--with-dbus \
