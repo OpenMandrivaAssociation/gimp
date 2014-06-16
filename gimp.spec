@@ -71,7 +71,7 @@ BuildRequires:	perl
 BuildRequires:	aalib-devel
 BuildRequires:	jasper-devel
 BuildRequires:	libwmf-devel >= 0.2.8
-BuildRequires:	mng-devel
+BuildRequires:	pkgconfig(libmng)
 BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
@@ -237,12 +237,12 @@ autoreconf -fiv
 	--enable-gtk-doc=yes \
 	--with-pdbgen \
 	--with-print \
-    	--with-lcms=lcms2 \
+    --with-lcms=lcms2 \
 	--with-aa \
 	--with-linux-input \
 	--with-poppler \
 	--with-webkit \
-    	--with-libtiff \
+    --with-libtiff \
 	--with-libjpeg \
 	--with-libpng \
 	--with-libmng \
