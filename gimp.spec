@@ -17,18 +17,16 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.8.10
-Release:	4
+Version:	2.8.14
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
-Source0:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
-Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
+Source0:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
+Source1:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		gimp-2.8.4-link.patch
-Patch2:		gimp-2.8-CVE-2013-1913.patch
-Patch3:		gimp-2.8-CVE-2013-1978.patch
 Patch4:		gimp-2.8.10-gegl-0.3-fix.patch
 
 BuildRequires:	pkgconfig(alsa)
@@ -47,7 +45,7 @@ BuildRequires:	pkgconfig(gmodule-no-export-2.0)
 BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
 BuildRequires:	pkgconfig(gudev-1.0) >= 167
 BuildRequires:	pkgconfig(iso-codes)
-BuildRequires:	pkgconfig(lcms) >= 1.16
+BuildRequires:	pkgconfig(lcms2) >= 2.2
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
 BuildRequires:	pkgconfig(libpng) >= 1.2.37
