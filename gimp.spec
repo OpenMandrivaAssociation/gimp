@@ -18,8 +18,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.8.10
-Release:	1
+Version:	2.8.14
+Release:	0.1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -28,8 +28,6 @@ Source1:	ftp://ftp.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		gimp-2.8.4-link.patch
-Patch2:		gimp-2.8-CVE-2013-1913.patch
-Patch3:		gimp-2.8-CVE-2013-1978.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
@@ -47,7 +45,7 @@ BuildRequires:	pkgconfig(gmodule-no-export-2.0)
 BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
 BuildRequires:	pkgconfig(gudev-1.0) >= 167
 BuildRequires:	pkgconfig(iso-codes)
-BuildRequires:	pkgconfig(lcms) >= 1.16
+BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
 BuildRequires:	pkgconfig(libpng) >= 1.2.37
@@ -71,7 +69,7 @@ BuildRequires:	perl
 BuildRequires:	aalib-devel
 BuildRequires:	jasper-devel
 BuildRequires:	libwmf-devel >= 0.2.8
-BuildRequires:	mng-devel
+BuildRequires:	pkgconfig(libmng)
 BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
