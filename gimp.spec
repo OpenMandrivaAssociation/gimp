@@ -217,7 +217,6 @@ in python instead of in scheme.
 %prep
 %setup -q
 %apply_patches
-autoreconf -fiv
 
 %build
 %configure2_5x \
