@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   gimp-2.8.14.tar.bz2: 380a8e2887e1a161056444921807e338c3d31653
+sources:
+  gimp-2.8.16.tar.bz2: ca5d9ce7d8eae92cd5f1780153649bc6a544961a
