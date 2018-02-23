@@ -18,7 +18,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.8.22
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -53,7 +53,6 @@ BuildRequires:	pkgconfig(librsvg-2.0) >= 2.36.0
 BuildRequires:	pkgconfig(pangocairo) >= 1.29.4
 BuildRequires:	pkgconfig(pangoft2)
 BuildRequires:	pkgconfig(poppler-glib) >= 0.12.4
-BuildRequires:	pkgconfig(webkit-1.0) >= 1.6.1
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
@@ -239,7 +238,7 @@ autoreconf -fiv
 	--with-aa \
 	--with-linux-input \
 	--with-poppler \
-	--with-webkit \
+	--without-webkit \
     --with-libtiff \
 	--with-libjpeg \
 	--with-libpng \
