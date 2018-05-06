@@ -1,7 +1,7 @@
 %bcond_without	python
 
 %define	api	2.0
-%define	abi	2.8
+%define	abi	2.10
 %define	major	0
 %define	libname 	%mklibname %{name} %{api}_%{major}
 %define	libbase		%mklibname gimpbase %{api} %{major}
@@ -17,8 +17,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.8.22
-Release:	3
+Version:	2.10.0
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -26,19 +26,20 @@ Source0:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 Source1:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
-Patch1:		gimp-2.8.4-link.patch
-Patch4:		gimp-2.8.10-gegl-0.3-fix.patch
+#Patch1:		gimp-2.8.4-link.patch
+#Patch4:		gimp-2.8.10-gegl-0.3-fix.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
-BuildRequires:	pkgconfig(babl) >= 0.1.10
+BuildRequires:	pkgconfig(babl) >= 0.1.46
 BuildRequires:	pkgconfig(cairo) >= 1.10.2
 BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
-BuildRequires:	pkgconfig(gegl-0.3)
+BuildRequires:	pkgconfig(gegl-0.4)
+BuildRequires:	pkgconfig(gexiv2) >= 0.10.6
 BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(gmodule-no-export-2.0)
@@ -48,11 +49,13 @@ BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
+BuildRequires:	pkgconfig(libmypaint)
 BuildRequires:	pkgconfig(libpng) >= 1.2.37
 BuildRequires:	pkgconfig(librsvg-2.0) >= 2.36.0
+BuildRequires:	pkgconfig(mypaint-brushes-1.0)
 BuildRequires:	pkgconfig(pangocairo) >= 1.29.4
 BuildRequires:	pkgconfig(pangoft2)
-BuildRequires:	pkgconfig(poppler-glib) >= 0.12.4
+BuildRequires:	pkgconfig(poppler-glib) >= 0.14.0
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
@@ -72,6 +75,7 @@ BuildRequires:	pkgconfig(libmng)
 BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
+BuildRequires:	poppler-data-devel >= 0.4.7
 # mail plugin
 BuildRequires:	sendmail-command
 # print plugin
@@ -290,6 +294,7 @@ desktop-file-install --vendor="" \
 %{_bindir}/gimp-%{abi}
 %{_bindir}/gimp-console
 %{_bindir}/gimp-console-%{abi}
+%{_libexecdir}/gimp-debug-tool-2.0
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
@@ -298,7 +303,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/plug-ins
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*.py
 %{_datadir}/applications/*
-%{_datadir}/appdata/gimp.appdata.xml
+%{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_mandir}/man1/gimp-*

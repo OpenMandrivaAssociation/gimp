@@ -9,4 +9,4 @@ diff -p -up gimp-2.5.1/desktop/gimp.desktop.in.in.desktopentry gimp-2.5.1/deskto
 +_Name=GIMP
  _GenericName=Image Editor
  _Comment=Create images and edit photographs
- Exec=@GIMP_COMMAND@ %U
+ # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
