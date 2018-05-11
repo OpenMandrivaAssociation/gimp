@@ -64,7 +64,10 @@ BuildRequires:	pkgconfig(xpm)
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
+BuildRequires:	gegl
+BuildRequires:	glib-networking
 BuildRequires:	gtk-doc
+BuildRequires:	gtk+2.0
 BuildRequires:	imagemagick
 BuildRequires:	intltool
 BuildRequires:	perl
@@ -84,6 +87,7 @@ BuildRequires:	sendmail-command
 %if %{with python}
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(python)
+BuildRequires:	python2-cairo
 %endif
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
