@@ -61,6 +61,7 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xmu)
 BuildRequires:	pkgconfig(xpm)
+BuildRequires:	lzma-devel
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
