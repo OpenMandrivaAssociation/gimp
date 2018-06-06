@@ -86,7 +86,7 @@ BuildRequires:	sendmail-command
 # python plugin
 %if %{with python}
 BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(pycairo)
 %endif
 # Require gegl, otherwise GIMP crashes on some operations
