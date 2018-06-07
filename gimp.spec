@@ -66,7 +66,6 @@ BuildRequires:	lzma-devel
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
-BuildRequires:	gegl
 BuildRequires:	glib-networking
 BuildRequires:	gtk-doc
 BuildRequires:	gtk+2.0
