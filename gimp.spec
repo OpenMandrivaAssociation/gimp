@@ -1,4 +1,5 @@
 %bcond_without	python
+%global __python %(__python2)
 
 %define	api	2.0
 %define	abi	2.10
@@ -227,7 +228,6 @@ in python instead of in scheme.
 autoreconf -fiv
 
 %build
-export PYTHON=%(_bindir)/python2
 %configure \
 	--enable-default-binary=yes \
 	--enable-gimp-console \
