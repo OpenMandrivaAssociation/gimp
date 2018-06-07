@@ -227,8 +227,8 @@ in python instead of in scheme.
 autoreconf -fiv
 
 %build
-export PYTHON=/usr/bin/python2
-%configure2_5x \
+export PYTHON=%(_bindir)/python2
+%configure \
 	--enable-default-binary=yes \
 	--enable-gimp-console \
 	--enable-mp=yes \
