@@ -24,7 +24,7 @@ License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
 Source0:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
-#Source1:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2.md5
+#Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
 Patch1:		fix-wrong-gegl-version.patch
