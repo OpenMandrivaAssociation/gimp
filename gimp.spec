@@ -63,6 +63,8 @@ BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xmu)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:	lzma-devel
+BuildRequires:	pkgconfig(OpenEXR)
+BuildRequires:	pkgconfig(openjpeg2)
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
@@ -94,6 +96,7 @@ BuildRequires:	pkgconfig(pycairo)
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
 Requires:	gegl
+Requires:	xdg-utils
 Suggests:	gimp-help-2
 
 %rename gimp2.6
