@@ -64,7 +64,7 @@ BuildRequires:	pkgconfig(xmu)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:	lzma-devel
 BuildRequires:	pkgconfig(OpenEXR)
-BuildRequires:	pkgconfig(openjpeg2)
+BuildRequires:	pkgconfig(libopenjp2)
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
