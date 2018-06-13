@@ -208,6 +208,7 @@ Requires:	%{libmodule} = %{EVRD}
 Requires:	%{libthumb} = %{EVRD}
 Requires:	%{libui} = %{EVRD}
 Requires:	%{libwidgets} = %{EVRD}
+Requires:	%{libgegl} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
