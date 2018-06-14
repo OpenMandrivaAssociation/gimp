@@ -1,5 +1,5 @@
 %bcond_without	python
-%global __python %(__python2)
+%global __python %{__python2}
 
 %define	api	2.0
 %define	abi	2.10

@@ -1,5 +1,2 @@
-removed_sources:
-  gimp-2.8.18.tar.bz2: 42434a0782c37803fbd184dbb9b648be887f4f40
-  gimp-2.8.22.tar.bz2: c894a0d9a864d418bdbd30a22d698c731583e5c4
 sources:
   gimp-2.10.0.tar.bz2: d8baa7fced2eddd78b4ed66e16b142c6cbbe5eec
