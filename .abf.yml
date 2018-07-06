@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   gimp-2.10.0.tar.bz2: d8baa7fced2eddd78b4ed66e16b142c6cbbe5eec
+sources:
+  gimp-2.10.4.tar.bz2: 8ab998e11bb0b9eaafa0c92a35f29af30e63e86e
