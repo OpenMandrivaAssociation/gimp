@@ -240,30 +240,15 @@ autoreconf -fiv
 %else
 	--enable-python=no \
 %endif
-	--with-gif-compression=lzw \
-	--without-hal \
-	--with-gvfs \
-	--with-dbus \
 	--enable-gtk-doc=yes \
 	--with-pdbgen \
 	--with-print \
-    --with-lcms=lcms2 \
 	--with-aa \
 	--with-linux-input \
-	--with-poppler \
 	--without-webkit \
-    --with-libtiff \
-	--with-libjpeg \
-	--with-libpng \
 	--with-libmng \
-	--with-libjasper \
-	--with-libexif \
-	--with-librsvg \
 	--with-libxpm \
-	--with-gvfs \
 	--with-alsa \
-	--with-dbus \
-	--with-script-fu \
 	--with-cairo-pdf
 
 %make
@@ -285,7 +270,7 @@ echo '</UL></BODY></HTML>' >> $HELP_IDX
 %find_lang gimp20 --all-name
 
 %if %{with python}
-chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*.py
+chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*/*.py
 mkdir -p %{buildroot}%{_libdir}/python%{py_ver}/site-packages
 echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
 echo %{_libdir}/gimp/%{api}/plug-ins >> %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
@@ -311,7 +296,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/environ/default.env
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
-%exclude %{_libdir}/gimp/%{api}/plug-ins/*.py
+%exclude %{_libdir}/gimp/%{api}/plug-ins/*/*.py
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
@@ -361,7 +346,7 @@ desktop-file-install --vendor="" \
 %files python
 %{_libdir}/gimp/%{api}/environ/pygimp.env
 %{_libdir}/gimp/%{api}/python
-%{_libdir}/gimp/%{api}/plug-ins/*.py
+%{_libdir}/gimp/%{api}/plug-ins/*/*.py
 %{_libdir}/python%{py_ver}/site-packages/*.pth
 %endif
 
