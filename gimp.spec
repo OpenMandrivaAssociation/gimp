@@ -18,7 +18,7 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.10.10
+Version:	2.10.12
 Release:	1
 License:	GPLv2+
 Group:		Graphics
@@ -251,10 +251,10 @@ autoreconf -fiv
 	--with-alsa \
 	--with-cairo-pdf
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # workaround broken help system
 HELP_DIR=%{buildroot}%{_datadir}/gimp/%api/help/C
