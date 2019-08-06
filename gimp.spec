@@ -1,5 +1,6 @@
 %bcond_without	python
 %global __python %{__python2}
+%global optflags %{optflags} -O3
 
 %define	api	2.0
 %define	abi	2.10
@@ -19,7 +20,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.10.12
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -64,7 +65,6 @@ BuildRequires:	pkgconfig(xpm)
 BuildRequires:	lzma-devel
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
-
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
 BuildRequires:	gegl
@@ -226,8 +226,7 @@ of Python extension modules from the plug-in, and you write plug-in
 in python instead of in scheme.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 autoreconf -fiv
 
 %build
