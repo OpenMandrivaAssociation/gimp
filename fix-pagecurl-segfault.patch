@@ -1,0 +1,13 @@
+diff --git a/plug-ins/pagecurl/pagecurl.c b/plug-ins/pagecurl/pagecurl.c
+index 048395ef839895c7909cd538738e63a4f64fb0d3..c82dc8ab5e7820b5118e923eac3026eb3c4c6c99 100644
+--- a/plug-ins/pagecurl/pagecurl.c
++++ b/plug-ins/pagecurl/pagecurl.c
+@@ -195,7 +195,7 @@ query (void)
+ 
+   static const GimpParamDef return_vals[] =
+   {
+-    { GIMP_PDB_LAYER, "Curl Layer", "The new layer with the curl." }
++    { GIMP_PDB_LAYER, "curl-layer", "The new layer with the curl." }
+   };
+ 
+   gimp_install_procedure (PLUG_IN_PROC,
