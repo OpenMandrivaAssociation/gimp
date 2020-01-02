@@ -295,7 +295,9 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/environ/default.env
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
+%if %{with python}
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*/*.py
+%endif
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
@@ -331,7 +333,6 @@ desktop-file-install --vendor="" \
 %files -n %{libwidgets}
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
-%if %{with python}
 %files -n %{devname}
 %doc ChangeLog
 %doc %{_datadir}/gtk-doc/html/*
@@ -342,6 +343,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/pkgconfig/*
 %{_mandir}/man1/gimptool-*
 
+%if %{with python}
 %files python
 %{_libdir}/gimp/%{api}/environ/pygimp.env
 %{_libdir}/gimp/%{api}/python
