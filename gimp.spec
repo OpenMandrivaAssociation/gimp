@@ -19,8 +19,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.10.14
-Release:	3
+Version:	2.10.16
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -28,9 +28,6 @@ Source0:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
-Patch1:		fix-pagecurl-segfault.patch
-Patch2:		fix-plugin-segfault.patch
-#Patch4:		gimp-2.8.10-gegl-0.3-fix.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
