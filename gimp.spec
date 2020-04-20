@@ -64,6 +64,7 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xmu)
 BuildRequires:	pkgconfig(xpm)
+BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:	lzma-devel
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
