@@ -20,7 +20,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.10.18
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -28,6 +28,9 @@ Source0:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
+
+# Upstream patches
+Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
@@ -49,10 +52,10 @@ BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
-BuildRequires:	pkgconfig(libmypaint)
+BuildRequires:	pkgconfig(libmypaint) >= 1.5.1
+BuildRequires:	pkgconfig(mypaint-brushes-2.0)
 BuildRequires:	pkgconfig(libpng) >= 1.2.37
 BuildRequires:	pkgconfig(librsvg-2.0) >= 2.36.0
-BuildRequires:	pkgconfig(mypaint-brushes-1.0)
 BuildRequires:	pkgconfig(pangocairo) >= 1.29.4
 BuildRequires:	pkgconfig(pangoft2)
 BuildRequires:	pkgconfig(poppler-glib) >= 0.14.0
@@ -89,7 +92,7 @@ BuildRequires:	sendmail-command
 %if %{with python}
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(python2)
-BuildRequires:	pkgconfig(pycairo)
+#BuildRequires:	pkgconfig(pycairo)
 %endif
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
@@ -349,4 +352,3 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/plug-ins/*/*.py
 %{_libdir}/python%{py_ver}/site-packages/*.pth
 %endif
-
