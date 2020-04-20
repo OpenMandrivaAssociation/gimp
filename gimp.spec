@@ -1,4 +1,4 @@
-%bcond_without	python
+%bcond_with	python
 %global __python %{__python2}
 %global optflags %{optflags} -O3
 
