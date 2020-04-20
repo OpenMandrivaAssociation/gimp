@@ -1,0 +1,33 @@
+From 2e1c04aebcd4289d96a57fe948e37a34710edf3a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jani=20V=C3=A4limaa?= <wally@mageia.org>
+Date: Wed, 1 Apr 2020 12:49:49 +0300
+Subject: [PATCH] Build with mypaint-brushes-2.0
+
+---
+ configure.ac | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 963d3d6..5c6425a 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1940,13 +1940,13 @@ WARNING: libmypaint lower than version 1.4.0 is known to crash when
+          parsing MyPaint 2 brushes. Please update."
+   ])
+ 
+-PKG_CHECK_MODULES(MYPAINT_BRUSHES, mypaint-brushes-1.0,,
+-                  [add_deps_error([mypaint-brushes-1.0])])
++PKG_CHECK_MODULES(MYPAINT_BRUSHES, mypaint-brushes-2.0,,
++                  [add_deps_error([mypaint-brushes-2.0])])
+ 
+ if test "x$enable_relocatable_bundle" != xno; then
+-  mypaint_brushes_dir='${gimp_installation_dir}/share/mypaint-data/1.0/brushes'
++  mypaint_brushes_dir='${gimp_installation_dir}/share/mypaint-data/2.0/brushes'
+ else
+-  mypaint_brushes_dir=`$PKG_CONFIG --variable=brushesdir mypaint-brushes-1.0`
++  mypaint_brushes_dir=`$PKG_CONFIG --variable=brushesdir mypaint-brushes-2.0`
+ fi
+ AC_SUBST(mypaint_brushes_dir)
+ 
+-- 
+2.26.0
