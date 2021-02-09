@@ -20,7 +20,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.10.22
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -68,6 +68,7 @@ BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:	lzma-devel
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
+BuildRequires:	appstream-util
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
 BuildRequires:	gegl
@@ -85,6 +86,8 @@ BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	poppler-data-devel >= 0.4.7
+BuildRequires:	gtk-update-icon-cache
+BuildRequires:	x11-server-xvfb
 # mail plugin
 BuildRequires:	sendmail-command
 # print plugin
@@ -252,7 +255,8 @@ autoreconf -fiv
 	--with-libmng \
 	--with-libxpm \
 	--with-alsa \
-	--with-cairo-pdf
+	--with-cairo-pdf \
+	--with-bug-report-url=https://issues.openmandriva.org
 
 %make_build
 
