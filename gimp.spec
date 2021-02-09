@@ -85,6 +85,7 @@ BuildRequires:	tiff-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	poppler-data-devel >= 0.4.7
+BuildRequires:	gtk-update-icon-cache
 # mail plugin
 BuildRequires:	sendmail-command
 # print plugin
