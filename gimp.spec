@@ -20,7 +20,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.10.22
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -102,6 +102,9 @@ BuildRequires:	pkgconfig(python2)
 # (at least on cage transformation)
 Requires:	gegl
 Requires:	xdg-utils
+# Graphviz is now required or GIMP refuse to start due error:
+# GIMP requires the GEGL operation "gegl:itrospect".
+Requires:	graphviz
 Suggests:	gimp-help-2
 
 %rename gimp2.6
