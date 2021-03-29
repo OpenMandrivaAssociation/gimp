@@ -31,7 +31,7 @@ Patch0:		gimp-2.5.1-desktopentry.patch
 
 # Upstream patches
 Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
-Patch2:         fix-broken-configure-ac.patch
+
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
