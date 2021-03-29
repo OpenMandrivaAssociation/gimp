@@ -19,8 +19,8 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
-Version:	2.10.22
-Release:	3
+Version:	2.10.24
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -31,7 +31,7 @@ Patch0:		gimp-2.5.1-desktopentry.patch
 
 # Upstream patches
 Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
-Patch2:         fix-broken-configure-ac.patch
+
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
