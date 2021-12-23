@@ -20,7 +20,7 @@ Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Epoch:		1
 Version:	2.10.30
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -49,6 +49,7 @@ BuildRequires:	pkgconfig(gmodule-no-export-2.0)
 BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
 BuildRequires:	pkgconfig(gudev-1.0) >= 167
 BuildRequires:	pkgconfig(iso-codes)
+BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
@@ -56,6 +57,7 @@ BuildRequires:	pkgconfig(libmypaint) >= 1.5.1
 BuildRequires:	pkgconfig(mypaint-brushes-2.0)
 BuildRequires:	pkgconfig(libpng) >= 1.2.37
 BuildRequires:	pkgconfig(librsvg-2.0) >= 2.36.0
+BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	pkgconfig(pangocairo) >= 1.29.4
 BuildRequires:	pkgconfig(pangoft2)
 BuildRequires:	pkgconfig(poppler-glib) >= 0.14.0
