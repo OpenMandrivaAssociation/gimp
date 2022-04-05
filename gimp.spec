@@ -109,6 +109,9 @@ Requires:	xdg-utils
 Requires:	graphviz
 Suggests:	gimp-help-2
 
+Requires:	lib64gtk-modules2.0
+Requires:	lib64gail18
+
 %rename gimp2.6
 
 %description
