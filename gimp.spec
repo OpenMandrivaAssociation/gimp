@@ -90,6 +90,7 @@ BuildRequires:	ghostscript-devel
 BuildRequires:	poppler-data-devel >= 0.4.7
 BuildRequires:	gtk-update-icon-cache
 BuildRequires:	x11-server-xvfb
+BuildRequires:	glibc-static-devel
 # mail plugin
 BuildRequires:	sendmail-command
 # print plugin
