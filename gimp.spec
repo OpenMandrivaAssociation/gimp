@@ -1,20 +1,20 @@
 %bcond_with	python
 %global __python %{__python2}
-%global optflags %{optflags} -O3
+%global optflags %{optflags} -O3 -Wno-int-conversion
 
-%define	api	2.0
-%define	abi	2.10
-%define	major	0
-%define	libname 	%mklibname %{name} %{api}_%{major}
-%define	libbase		%mklibname gimpbase %{api} %{major}
-%define	libcolor	%mklibname gimpcolor %{api} %{major}
-%define	libconfig	%mklibname gimpconfig %{api} %{major}
-%define	libmath		%mklibname gimpmath %{api} %{major}
-%define	libmodule	%mklibname gimpmodule %{api} %{major}
-%define	libthumb	%mklibname gimpthumb %{api} %{major}
-%define	libui		%mklibname gimpui %{api} %{major}
-%define	libwidgets	%mklibname gimpwidgets %{api} %{major}
-%define	devname 	%mklibname -d %{name}%{api}
+%define api 2.0
+%define abi 2.10
+%define major 0
+%define libname %mklibname %{name} %{api}_%{major}
+%define libbase %mklibname gimpbase %{api} %{major}
+%define libcolor %mklibname gimpcolor %{api} %{major}
+%define libconfig %mklibname gimpconfig %{api} %{major}
+%define libmath %mklibname gimpmath %{api} %{major}
+%define libmodule %mklibname gimpmodule %{api} %{major}
+%define libthumb %mklibname gimpthumb %{api} %{major}
+%define libui %mklibname gimpui %{api} %{major}
+%define libwidgets %mklibname gimpwidgets %{api} %{major}
+%define devname %mklibname -d %{name}%{api}
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
@@ -67,7 +67,8 @@ BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xmu)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:  pkgconfig(libxml-2.0)
-BuildRequires:	lzma-devel
+BuildRequires:  pkgconfig(libjxl)
+BuildRequires:	pkgconfig(liblzma)
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
 BuildRequires:	appstream-util
@@ -81,13 +82,13 @@ BuildRequires:	imagemagick
 BuildRequires:	intltool
 BuildRequires:	perl
 BuildRequires:	aalib-devel
-BuildRequires:	jasper-devel
-BuildRequires:	libwmf-devel >= 0.2.8
+BuildRequires:	pkgconfig(jasper)
+BuildRequires:	pkgconfig(libwmf)
 BuildRequires:	pkgconfig(libmng)
-BuildRequires:	tiff-devel
-BuildRequires:	bzip2-devel
+BuildRequires:	pkgconfig(libtiff-4)
+BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	ghostscript-devel
-BuildRequires:	poppler-data-devel >= 0.4.7
+BuildRequires:	pkgconfig(poppler-data)
 BuildRequires:	gtk-update-icon-cache
 BuildRequires:	x11-server-xvfb
 BuildRequires:	glibc-static-devel
