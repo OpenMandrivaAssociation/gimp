@@ -35,7 +35,7 @@ Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
-BuildRequires:	pkgconfig(babl) >= 0.1.52
+BuildRequires:	pkgconfig(babl-0.1) >= 0.1.100
 BuildRequires:	pkgconfig(cairo) >= 1.10.2
 BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
