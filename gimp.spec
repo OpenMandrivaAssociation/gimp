@@ -1,25 +1,24 @@
 %bcond_with	python
-%global __python %{__python2}
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
 %define api 2.0
 %define abi 2.10
 %define major 0
-%define libname %mklibname %{name} %{api}_%{major}
-%define libbase %mklibname gimpbase %{api} %{major}
-%define libcolor %mklibname gimpcolor %{api} %{major}
-%define libconfig %mklibname gimpconfig %{api} %{major}
-%define libmath %mklibname gimpmath %{api} %{major}
-%define libmodule %mklibname gimpmodule %{api} %{major}
-%define libthumb %mklibname gimpthumb %{api} %{major}
-%define libui %mklibname gimpui %{api} %{major}
-%define libwidgets %mklibname gimpwidgets %{api} %{major}
+%define oldlibname %mklibname %{name} %{api}_%{major}
+%define oldlibbase %mklibname gimpbase %{api} %{major}
+%define oldlibcolor %mklibname gimpcolor %{api} %{major}
+%define oldlibconfig %mklibname gimpconfig %{api} %{major}
+%define oldlibmath %mklibname gimpmath %{api} %{major}
+%define oldlibmodule %mklibname gimpmodule %{api} %{major}
+%define oldlibthumb %mklibname gimpthumb %{api} %{major}
+%define oldlibui %mklibname gimpui %{api} %{major}
+%define oldlibwidgets %mklibname gimpwidgets %{api} %{major}
 %define devname %mklibname -d %{name}%{api}
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Version:	2.10.36
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -113,7 +112,17 @@ Suggests:	gimp-help-2
 Requires:	lib64gtk-modules2.0
 Requires:	lib64gail18
 
-%rename gimp2.6
+# No point in splitting out internal helper libraries...
+%rename %{oldlibname}
+%rename %{oldlibbase}
+%rename %{oldlibcolor}
+%rename %{oldlibconfig}
+%rename %{oldlibmath}
+%rename %{oldlibmodule}
+%rename %{oldlibthumb}
+%rename %{oldlibui}
+%rename %{oldlibwidgets}
+
 
 %description
 The GIMP is an image manipulation program suitable for photo retouching,
@@ -137,85 +146,14 @@ running the scripts.
 
 
 Build Options:
---without python        Disable pygimp (default enabled)
-
-%package -n %{libname}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libname}
-This package contains a shared library for %{name}.
-
-%package -n %{libbase}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libbase}
-This package contains a shared library for %{name}.
-
-%package -n %{libcolor}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libcolor}
-This package contains a shared library for %{name}.
-
-%package -n %{libconfig}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libconfig}
-This package contains a shared library for %{name}.
-
-%package -n %{libmath}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libmath}
-This package contains a shared library for %{name}.
-
-%package -n %{libmodule}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libmodule}
-This package contains a shared library for %{name}.
-
-%package -n %{libthumb}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libthumb}
-This package contains a shared library for %{name}.
-
-%package -n %{libui}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libui}
-This package contains a shared library for %{name}.
-
-%package -n %{libwidgets}
-Summary:	GIMP libraries
-Group:		System/Libraries
-
-%description -n %{libwidgets}
-This package contains a shared library for %{name}.
+--with python        Disable pygimp (default disabled, because it requires obsolete python 2.x)
 
 %package -n %{devname}
 Summary:	GIMP plugin and extension development kit
 Group:		Development/GNOME and GTK+
-Requires:	%{libname} = %{EVRD}
-Requires:	%{libbase} = %{EVRD}
-Requires:	%{libcolor} = %{EVRD}
-Requires:	%{libconfig} = %{EVRD}
-Requires:	%{libmath} = %{EVRD}
-Requires:	%{libmodule} = %{EVRD}
-Requires:	%{libthumb} = %{EVRD}
-Requires:	%{libui} = %{EVRD}
-Requires:	%{libwidgets} = %{EVRD}
+Requires:	%{name} = %{EVRD}
 Requires:	pkgconfig(gegl-0.4)
-Provides:	%{name}-devel = %{version}-%{release}
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n %{devname}
 Development libraries and header files for writing GIMP plugins and extensions.
@@ -314,32 +252,14 @@ desktop-file-install --vendor="" \
 %{_mandir}/man1/gimp-*
 %{_mandir}/man1/gimp.*
 %{_mandir}/man5/gimp*
-
-%files -n %{libname}
 %{_libdir}/libgimp-%{api}.so.%{major}*
-
-%files -n %{libbase}
 %{_libdir}/libgimpbase-%{api}.so.%{major}*
-
-%files -n %{libcolor}
 %{_libdir}/libgimpcolor-%{api}.so.%{major}*
-
-%files -n %{libconfig}
 %{_libdir}/libgimpconfig-%{api}.so.%{major}*
-
-%files -n %{libmath}
 %{_libdir}/libgimpmath-%{api}.so.%{major}*
-
-%files -n %{libmodule}
 %{_libdir}/libgimpmodule-%{api}.so.%{major}*
-
-%files -n %{libthumb}
 %{_libdir}/libgimpthumb-%{api}.so.%{major}*
-
-%files -n %{libui}
 %{_libdir}/libgimpui-%{api}.so.%{major}*
-
-%files -n %{libwidgets}
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
