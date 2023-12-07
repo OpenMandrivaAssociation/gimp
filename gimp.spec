@@ -149,7 +149,6 @@ This package contains a shared library for %{name}.
 %package -n %{libbase}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libbase}
 This package contains a shared library for %{name}.
@@ -157,7 +156,6 @@ This package contains a shared library for %{name}.
 %package -n %{libcolor}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libcolor}
 This package contains a shared library for %{name}.
@@ -165,7 +163,6 @@ This package contains a shared library for %{name}.
 %package -n %{libconfig}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libconfig}
 This package contains a shared library for %{name}.
@@ -173,7 +170,6 @@ This package contains a shared library for %{name}.
 %package -n %{libmath}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libmath}
 This package contains a shared library for %{name}.
@@ -181,7 +177,6 @@ This package contains a shared library for %{name}.
 %package -n %{libmodule}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libmodule}
 This package contains a shared library for %{name}.
@@ -189,7 +184,6 @@ This package contains a shared library for %{name}.
 %package -n %{libthumb}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libthumb}
 This package contains a shared library for %{name}.
@@ -197,7 +191,6 @@ This package contains a shared library for %{name}.
 %package -n %{libui}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libui}
 This package contains a shared library for %{name}.
@@ -205,7 +198,6 @@ This package contains a shared library for %{name}.
 %package -n %{libwidgets}
 Summary:	GIMP libraries
 Group:		System/Libraries
-Conflicts:	%{_lib}gimp2.0_0 < 1:2.8.4-2
 
 %description -n %{libwidgets}
 This package contains a shared library for %{name}.
