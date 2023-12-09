@@ -18,7 +18,7 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Version:	2.10.36
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.gimp.org/
@@ -113,15 +113,17 @@ Requires:	lib64gtk-modules2.0
 Requires:	lib64gail18
 
 # No point in splitting out internal helper libraries...
-%rename %{oldlibname}
-%rename %{oldlibbase}
-%rename %{oldlibcolor}
-%rename %{oldlibconfig}
-%rename %{oldlibmath}
-%rename %{oldlibmodule}
-%rename %{oldlibthumb}
-%rename %{oldlibui}
-%rename %{oldlibwidgets}
+# Not using %%rename because that only obsoletes "older"
+# versions and we've dropped an Epoch.
+Obsoletes: %{oldlibname}
+Obsoletes: %{oldlibbase}
+Obsoletes: %{oldlibcolor}
+Obsoletes: %{oldlibconfig}
+Obsoletes: %{oldlibmath}
+Obsoletes: %{oldlibmodule}
+Obsoletes: %{oldlibthumb}
+Obsoletes: %{oldlibui}
+Obsoletes: %{oldlibwidgets}
 
 
 %description
