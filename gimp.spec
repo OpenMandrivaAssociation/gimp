@@ -18,11 +18,11 @@
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
 Version:	2.10.36
-Release:	5
+Release:	6
 License:	GPLv2+
 Group:		Graphics
-Url:		http://www.gimp.org/
-Source0:	http://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
+Url:		https://www.gimp.org/
+Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 Patch0:		gimp-2.5.1-desktopentry.patch
