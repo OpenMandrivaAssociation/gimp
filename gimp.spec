@@ -29,6 +29,7 @@ Patch0:		gimp-2.5.1-desktopentry.patch
 
 # Upstream patches
 Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
+Patch2:		https://gitlab.gnome.org/GNOME/gimp/-/commit/d7228727d7a4b11909001cf8fd8977d68bd29720.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
