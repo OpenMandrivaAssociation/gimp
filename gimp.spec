@@ -17,8 +17,8 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.10.36
-Release:	6
+Version:	2.10.38
+Release:	1
 License:	GPLv2+
 Group:		Graphics
 Url:		https://www.gimp.org/
@@ -29,8 +29,6 @@ Patch0:		gimp-2.5.1-desktopentry.patch
 
 # Upstream patches
 Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
-# Fix for crashing while exiting.
-Patch2:		https://gitlab.gnome.org/GNOME/gimp/-/commit/d7228727d7a4b11909001cf8fd8977d68bd29720.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
