@@ -208,7 +208,7 @@ desktop-file-install --vendor="" \
 %{_bindir}/gimp-test-clipboard
 %{_bindir}/gimp-test-clipboard-%{api}
 %{_bindir}/gimp-test-clipboard-%{minor}
-%{_bindir}/bin/gimptool
+%{_bindir}/gimptool
 %{_libexecdir}/gimp-debug-tool*
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
