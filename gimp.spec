@@ -165,13 +165,6 @@ Provides:	%{name}-devel = %{EVRD}
 %description -n %{devname}
 Development libraries and header files for writing GIMP plugins and extensions.
 
-%description python
-This package contains the python modules for GIMP, which act as a
-wrapper to libgimp allowing the writing of plug-ins for Gimp.
-This is similar to script-fu, except that you can use the full set
-of Python extension modules from the plug-in, and you write plug-in
-in python instead of in scheme.
-
 %prep
 %autosetup -n %{name}-%{version}-RC1 -p1
 %build
