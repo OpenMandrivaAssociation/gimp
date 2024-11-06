@@ -75,6 +75,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
 BuildRequires:	gegl
 BuildRequires:	glib-networking
+BuildRequires:	gjs
 BuildRequires:	gtk-doc
 BuildRequires:	imagemagick
 BuildRequires:	intltool
