@@ -30,6 +30,7 @@ Source13:	gimp-scripting-sample.pl
 #Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 
 BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(appstream-glib)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
 BuildRequires:	pkgconfig(babl-0.1) >= 0.1.100
