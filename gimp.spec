@@ -109,6 +109,7 @@ BuildRequires:	pkgconfig(python)
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
 Requires:	gegl
+Requires:	%{_lib}gegl-gir0.4
 Requires:	xdg-utils
 # Graphviz is now required or GIMP refuse to start due error:
 # GIMP requires the GEGL operation "gegl:itrospect".
