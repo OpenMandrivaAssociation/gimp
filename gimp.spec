@@ -225,7 +225,6 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/org.gimp.extension.goat-exercises.metainfo.xml
 %{_libdir}/girepository-1.0/
 %{_libdir}/libgimp-scriptfu-%{api}.so.%{major}*
-%{_libdir}/gimp/%{api}/plug-ins/*/*.py
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
