@@ -89,6 +89,7 @@ BuildRequires:	pkgconfig(poppler-data)
 BuildRequires:	gtk-update-icon-cache
 BuildRequires:	x11-server-xvfb
 BuildRequires:	glibc-static-devel
+BuildRequires:	pkgconfig(vapigen)
 # mail plugin
 BuildRequires:	sendmail-command
 # print plugin
