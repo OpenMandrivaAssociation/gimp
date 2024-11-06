@@ -71,6 +71,7 @@ BuildRequires:	pkgconfig(liblzma)
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
 BuildRequires:	appstream-util
+BuildRequires:	dbus-daemon
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
 BuildRequires:	gegl
