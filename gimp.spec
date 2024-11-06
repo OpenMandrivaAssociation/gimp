@@ -195,10 +195,10 @@ sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 
 %find_lang gimp20 --all-name
 
-chmod 755 %{buildroot}%{_libdir}/gimp/%{abi_version}/plug-ins/*/*.py
-mkdir -p %{buildroot}%{_libdir}/python%{python3_version}/site-packages
-echo %{_libdir}/gimp/%{abi_version}/extensions > %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
-echo %{_libdir}/gimp/%{abi_version}/plug-ins >> %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
+#chmod 755 %{buildroot}%{_libdir}/gimp/%{abi_version}/plug-ins/*/*.py
+#mkdir -p %{buildroot}%{_libdir}/python%{python3_version}/site-packages
+#echo %{_libdir}/gimp/%{abi_version}/extensions > %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
+#echo %{_libdir}/gimp/%{abi_version}/plug-ins >> %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
 
 desktop-file-install --vendor="" \
 	--add-category="X-MandrivaLinux-CrossDesktop" \
