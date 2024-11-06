@@ -213,7 +213,7 @@ desktop-file-install --vendor="" \
 %{_bindir}/gimp-console
 %{_bindir}/gimp-console-%{abi}
 %{_bindir}/gimp-test-clipboard-%{api}
-%{_libexecdir}/gimp-debug-tool-2.0
+#{_libexecdir}/gimp-debug-tool-2.0
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
