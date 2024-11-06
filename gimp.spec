@@ -146,8 +146,8 @@ inclined.  Alternatively, choose fonts which exist on your system before
 running the scripts.
 
 
-Build Options:
---with python        Disable pygimp (default disabled, because it requires obsolete python 2.x)
+#Build Options:
+#--with python        Disable pygimp (default disabled, because it requires obsolete python 2.x)
 
 %package -n %{devname}
 Summary:	GIMP plugin and extension development kit
