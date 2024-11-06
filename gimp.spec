@@ -3,6 +3,7 @@
 %define api 3.0
 %define abi 3.0
 %define major 0
+%define minor 3
 %define oldlibname %mklibname %{name} %{api}_%{major}
 %define oldlibbase %mklibname gimpbase %{api} %{major}
 %define oldlibcolor %mklibname gimpcolor %{api} %{major}
@@ -47,6 +48,7 @@ BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(gmodule-no-export-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(gudev-1.0) >= 167
+BuildRequires:	pkgconfig(harfbuzz-gobject)
 BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
@@ -96,6 +98,7 @@ BuildRequires:	glibc-static-devel
 BuildRequires:	pkgconfig(vapigen)
 # mail plugin
 BuildRequires:	sendmail-command
+BuildRequires:	xdg-utils
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
@@ -110,10 +113,12 @@ Requires:	xdg-utils
 # Graphviz is now required or GIMP refuse to start due error:
 # GIMP requires the GEGL operation "gegl:itrospect".
 Requires:	graphviz
-Suggests:	gimp-help-2
-
-Requires:	lib64gtk-modules2.0
-Requires:	lib64gail18
+Requires:       gjs
+Requires:       hicolor-icon-theme
+#Requires:	lib64gail18
+# Python requires:
+Requires:	python-gi
+Requires:	python-gobject3
 
 # No point in splitting out internal helper libraries...
 # Not using %%rename because that only obsoletes "older"
@@ -150,9 +155,6 @@ inclined.  Alternatively, choose fonts which exist on your system before
 running the scripts.
 
 
-#Build Options:
-#--with python        Disable pygimp (default disabled, because it requires obsolete python 2.x)
-
 %package -n %{devname}
 Summary:	GIMP plugin and extension development kit
 Group:		Development/GNOME and GTK+
@@ -162,11 +164,6 @@ Provides:	%{name}-devel = %{EVRD}
 
 %description -n %{devname}
 Development libraries and header files for writing GIMP plugins and extensions.
-
-%package python
-Summary:	GIMP python extension
-Group:		Graphics
-Requires:	pygtk2.0
 
 %description python
 This package contains the python modules for GIMP, which act as a
@@ -210,21 +207,31 @@ desktop-file-install --vendor="" \
 %config(noreplace) %{_sysconfdir}/gimp
 %{_bindir}/gimp
 %{_bindir}/gimp-%{abi}
+%{_bindir}/gimp-%{minor}
 %{_bindir}/gimp-console
 %{_bindir}/gimp-console-%{abi}
+%{_bindir}/gimp-console-%{minor}
+%{_bindir}/gimp-script-fu-interpreter-%{abi}
+%{_bindir}/gimp-test-clipboard
 %{_bindir}/gimp-test-clipboard-%{api}
-#{_libexecdir}/gimp-debug-tool-2.0
+%{_bindir}/gimp-test-clipboard-%{minor}
+%{_bindir}/bin/gimptool
+%{_libexecdir}/gimp-debug-tool*
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
-%{_libdir}/gimp/%{api}/environ/default.env
+%{_libdir}/gimp/%{api}/environ/
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
-%exclude %{_libdir}/gimp/%{api}/plug-ins/*/*.py
+%{_libdir}/gimp/%{api}/extensions/
+%{_libdir}/girepository-1.0/
+%{_libdir}/libgimp-scriptfu-%{api}.so.%{major}*
+%{_libdir}/gimp/%{api}/plug-ins/*/*.py
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
 %{_datadir}/icons/hicolor/*/apps/gimp.png
+%{_iconsdir}/hicolor/scalable/apps/gimp.svg
 %{_mandir}/man1/gimp-*
 %{_mandir}/man1/gimp.*
 %{_mandir}/man5/gimp*
@@ -239,17 +246,13 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-#doc ChangeLog
-#doc %{_datadir}/gtk-doc/html/*
+%doc %{_datadir}/doc/gimp-%{api}/
 %{_bindir}/gimptool-*
-#{_datadir}/aclocal/*.m4
 %{_includedir}/*
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
+%{_datadir}/gir-1.0/Gimp-%{api}.gir
+%{_datadir}/gir-1.0/GimpUi-%{api}.gir
+%{_datadir}/vala/vapi/
 %{_mandir}/man1/gimptool-*
-
-%files python
-#{_libdir}/gimp/%{api}/environ/pygimp.env
-#{_libdir}/gimp/%{api}/python
-%{_libdir}/gimp/%{api}/plug-ins/*/*.py
-#{_libdir}/python%{py_ver}/site-packages/*.pth
+%{_mandir}/man1/gimptool.1.*
