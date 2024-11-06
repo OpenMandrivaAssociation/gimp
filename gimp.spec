@@ -239,10 +239,10 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-%doc ChangeLog
-%doc %{_datadir}/gtk-doc/html/*
+#doc ChangeLog
+#doc %{_datadir}/gtk-doc/html/*
 %{_bindir}/gimptool-*
-%{_datadir}/aclocal/*.m4
+#{_datadir}/aclocal/*.m4
 %{_includedir}/*
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
