@@ -1,8 +1,8 @@
 %bcond_with	python
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
-%define api 2.0
-%define abi 2.10
+%define api 3.0
+%define abi 3.0
 %define major 0
 %define oldlibname %mklibname %{name} %{api}_%{major}
 %define oldlibbase %mklibname gimpbase %{api} %{major}
@@ -17,18 +17,18 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.10.38
-Release:	3
+Version:	3.0.0
+Release:	0.rc1.0
 License:	GPLv2+
 Group:		Graphics
 Url:		https://www.gimp.org/
-Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
+Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}-RC1.tar.xz
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
-Patch0:		gimp-2.5.1-desktopentry.patch
+#Patch0:		gimp-2.5.1-desktopentry.patch
 
 # Upstream patches
-Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
+#Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libart-2.0)
@@ -44,7 +44,7 @@ BuildRequires:	pkgconfig(gexiv2) >= 0.10.6
 BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(gmodule-no-export-2.0)
-BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(gudev-1.0) >= 167
 BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libavif)
@@ -75,7 +75,6 @@ BuildRequires:	iso-codes
 BuildRequires:	gegl
 BuildRequires:	glib-networking
 BuildRequires:	gtk-doc
-BuildRequires:	gtk+2.0
 BuildRequires:	imagemagick
 BuildRequires:	intltool
 BuildRequires:	perl
@@ -96,8 +95,8 @@ BuildRequires:	sendmail-command
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
 %if %{with python}
-BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(pygobject-3.0)
+BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(pycairo)
 %endif
 # Require gegl, otherwise GIMP crashes on some operations
@@ -173,55 +172,34 @@ of Python extension modules from the plug-in, and you write plug-in
 in python instead of in scheme.
 
 %prep
-%autosetup -p1
-autoupdate
-autoreconf -fiv
-
+%autosetup -n %{name}-%{version}-RC1 -p1
 %build
-%configure \
-	--enable-default-binary=yes \
-	--enable-gimp-console \
-	--enable-mp=yes \
+sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
+%meson \
+	-Dcheck-update=no	\
+	-Djpeg-xl=enabled	\
+	-Dilbm=disabled		\
 %if %{with python}
-	--enable-python=yes \
+	-Dpython=enabled	\
 %else
-	--enable-python=no \
+	-Dpython=disabled	\
 %endif
-	--enable-gtk-doc=yes \
-	--with-pdbgen \
-	--with-print \
-	--with-aa \
-	--with-linux-input \
-	--without-webkit \
-	--with-libmng \
-	--with-libxpm \
-	--with-alsa \
-	--with-cairo-pdf \
-	--with-bug-report-url=https://issues.openmandriva.org
+	-Dappdata-test=disabled \
+	-Dbug-report-url="https://issues.openmandriva.org"
 
-%make_build
+%meson_build
 
 %install
-%make_install
 
-# workaround broken help system
-HELP_DIR=%{buildroot}%{_datadir}/gimp/%api/help/C
-[[ -d $HELP_DIR ]] || mkdir -p $HELP_DIR
-HELP_IDX=$HELP_DIR/introduction.html
-echo -e '<HTML><HEAD><TITLE>GIMP Base Library</HEAD>\n<BODY><UL>' > $HELP_IDX
-
-/bin/ls %{buildroot}%{_datadir}/gtk-doc/html/*/index.html | sed -e "s@%{buildroot}@@g" >> $HELP_IDX
-perl -pi -e 's!(.*/html/)([^/]*)(/index.html)!<LI><A HREF="\1\2\3">\2</A>!g' $HELP_IDX
-
-echo '</UL></BODY></HTML>' >> $HELP_IDX
+%meson_install
 
 %find_lang gimp20 --all-name
 
 %if %{with python}
-chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*/*.py
-mkdir -p %{buildroot}%{_libdir}/python%{py_ver}/site-packages
-echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
-echo %{_libdir}/gimp/%{api}/plug-ins >> %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
+chmod 755 %{buildroot}%{_libdir}/gimp/%{abi_version}/plug-ins/*/*.py
+mkdir -p %{buildroot}%{_libdir}/python%{python3_version}/site-packages
+echo %{_libdir}/gimp/%{abi_version}/extensions > %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
+echo %{_libdir}/gimp/%{abi_version}/plug-ins >> %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
 %endif
 
 desktop-file-install --vendor="" \
