@@ -1,4 +1,3 @@
-%bcond_with	python
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
 %define api 3.0
@@ -94,11 +93,9 @@ BuildRequires:	sendmail-command
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
-%if %{with python}
 BuildRequires:	pkgconfig(pygobject-3.0)
 BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(pycairo)
-%endif
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
 Requires:	gegl
@@ -179,11 +176,6 @@ sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 	-Dcheck-update=no	\
 	-Djpeg-xl=enabled	\
 	-Dilbm=disabled		\
-%if %{with python}
-	-Dpython=enabled	\
-%else
-	-Dpython=disabled	\
-%endif
 	-Dappdata-test=disabled \
 	-Dbug-report-url="https://issues.openmandriva.org"
 
@@ -195,12 +187,10 @@ sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 
 %find_lang gimp20 --all-name
 
-%if %{with python}
 chmod 755 %{buildroot}%{_libdir}/gimp/%{abi_version}/plug-ins/*/*.py
 mkdir -p %{buildroot}%{_libdir}/python%{python3_version}/site-packages
 echo %{_libdir}/gimp/%{abi_version}/extensions > %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
 echo %{_libdir}/gimp/%{abi_version}/plug-ins >> %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
-%endif
 
 desktop-file-install --vendor="" \
 	--add-category="X-MandrivaLinux-CrossDesktop" \
@@ -222,9 +212,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/environ/default.env
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
-%if %{with python}
 %exclude %{_libdir}/gimp/%{api}/plug-ins/*/*.py
-%endif
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
@@ -252,10 +240,8 @@ desktop-file-install --vendor="" \
 %{_libdir}/pkgconfig/*
 %{_mandir}/man1/gimptool-*
 
-%if %{with python}
 %files python
 %{_libdir}/gimp/%{api}/environ/pygimp.env
 %{_libdir}/gimp/%{api}/python
 %{_libdir}/gimp/%{api}/plug-ins/*/*.py
 %{_libdir}/python%{py_ver}/site-packages/*.pth
-%endif
