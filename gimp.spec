@@ -249,7 +249,7 @@ desktop-file-install --vendor="" \
 %{_mandir}/man1/gimptool-*
 
 %files python
-%{_libdir}/gimp/%{api}/environ/pygimp.env
-%{_libdir}/gimp/%{api}/python
+#{_libdir}/gimp/%{api}/environ/pygimp.env
+#{_libdir}/gimp/%{api}/python
 %{_libdir}/gimp/%{api}/plug-ins/*/*.py
-%{_libdir}/python%{py_ver}/site-packages/*.pth
+#{_libdir}/python%{py_ver}/site-packages/*.pth
