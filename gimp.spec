@@ -36,6 +36,7 @@ BuildRequires:	pkgconfig(atk) >= 2.2.0
 BuildRequires:	pkgconfig(babl-0.1) >= 0.1.100
 BuildRequires:	pkgconfig(cairo) >= 1.10.2
 BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
+BuildRequires:	pkgconfig(cfitsio)
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
