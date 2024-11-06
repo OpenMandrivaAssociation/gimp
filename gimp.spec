@@ -213,10 +213,16 @@ desktop-file-install --vendor="" \
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
-%{_libdir}/gimp/%{api}/environ/
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
-%{_libdir}/gimp/%{api}/extensions/
+%{_libdir}/gimp/%{api}/environ/python.env
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-c
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-c.c
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-gjs.js
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-py3.py
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-vala
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-vala.vala
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/org.gimp.extension.goat-exercises.metainfo.xml
 %{_libdir}/girepository-1.0/
 %{_libdir}/libgimp-scriptfu-%{api}.so.%{major}*
 %{_libdir}/gimp/%{api}/plug-ins/*/*.py
