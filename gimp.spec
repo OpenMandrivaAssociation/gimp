@@ -97,6 +97,7 @@ BuildRequires:	sendmail-command
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
 BuildRequires:	pkgconfig(pygobject-3.0)
+BuildRequires:	python-gi
 BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(pycairo)
 # Require gegl, otherwise GIMP crashes on some operations
