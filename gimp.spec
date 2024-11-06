@@ -1,9 +1,9 @@
-%bcond_with	python
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
-%define api 2.0
-%define abi 2.10
+%define api 3.0
+%define abi 3.0
 %define major 0
+%define minor 3
 %define oldlibname %mklibname %{name} %{api}_%{major}
 %define oldlibbase %mklibname gimpbase %{api} %{major}
 %define oldlibcolor %mklibname gimpcolor %{api} %{major}
@@ -17,25 +17,27 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.10.38
-Release:	3
+Version:	3.0.0
+Release:	0.rc1.0
 License:	GPLv2+
 Group:		Graphics
 Url:		https://www.gimp.org/
-Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}.tar.bz2
+Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}-RC1.tar.xz
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
-Patch0:		gimp-2.5.1-desktopentry.patch
+#Patch0:		gimp-2.5.1-desktopentry.patch
 
 # Upstream patches
-Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
+#Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 
 BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(appstream-glib)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(atk) >= 2.2.0
 BuildRequires:	pkgconfig(babl-0.1) >= 0.1.100
 BuildRequires:	pkgconfig(cairo) >= 1.10.2
 BuildRequires:	pkgconfig(cairo-pdf) >= 1.10.2
+BuildRequires:	pkgconfig(cfitsio)
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
@@ -44,8 +46,9 @@ BuildRequires:	pkgconfig(gexiv2) >= 0.10.6
 BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(gmodule-no-export-2.0)
-BuildRequires:	pkgconfig(gtk+-2.0) >= 2.24.10
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(gudev-1.0) >= 167
+BuildRequires:	pkgconfig(harfbuzz-gobject)
 BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
@@ -70,12 +73,14 @@ BuildRequires:	pkgconfig(liblzma)
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
 BuildRequires:	appstream-util
+BuildRequires:	dbus-daemon
 BuildRequires:	desktop-file-utils
 BuildRequires:	iso-codes
 BuildRequires:	gegl
 BuildRequires:	glib-networking
+BuildRequires:	gi-docgen
+BuildRequires:	gjs
 BuildRequires:	gtk-doc
-BuildRequires:	gtk+2.0
 BuildRequires:	imagemagick
 BuildRequires:	intltool
 BuildRequires:	perl
@@ -90,27 +95,31 @@ BuildRequires:	pkgconfig(poppler-data)
 BuildRequires:	gtk-update-icon-cache
 BuildRequires:	x11-server-xvfb
 BuildRequires:	glibc-static-devel
+BuildRequires:	pkgconfig(vapigen)
 # mail plugin
 BuildRequires:	sendmail-command
+BuildRequires:	xdg-utils
 # print plugin
 #BuildRequires: libgimpprint-devel >= 4.2.0
 # python plugin
-%if %{with python}
-BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(pygobject-3.0)
+BuildRequires:	python-gi
+BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(pycairo)
-%endif
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
 Requires:	gegl
+Requires:	%{_lib}gegl-gir0.4
 Requires:	xdg-utils
 # Graphviz is now required or GIMP refuse to start due error:
 # GIMP requires the GEGL operation "gegl:itrospect".
 Requires:	graphviz
-Suggests:	gimp-help-2
-
-Requires:	lib64gtk-modules2.0
-Requires:	lib64gail18
+Requires:       gjs
+Requires:       hicolor-icon-theme
+#Requires:	lib64gail18
+# Python requires:
+Requires:	python-gi
+Requires:	python-gobject3
 
 # No point in splitting out internal helper libraries...
 # Not using %%rename because that only obsoletes "older"
@@ -147,9 +156,6 @@ inclined.  Alternatively, choose fonts which exist on your system before
 running the scripts.
 
 
-Build Options:
---with python        Disable pygimp (default disabled, because it requires obsolete python 2.x)
-
 %package -n %{devname}
 Summary:	GIMP plugin and extension development kit
 Group:		Development/GNOME and GTK+
@@ -160,69 +166,30 @@ Provides:	%{name}-devel = %{EVRD}
 %description -n %{devname}
 Development libraries and header files for writing GIMP plugins and extensions.
 
-%package python
-Summary:	GIMP python extension
-Group:		Graphics
-Requires:	pygtk2.0
-
-%description python
-This package contains the python modules for GIMP, which act as a
-wrapper to libgimp allowing the writing of plug-ins for Gimp.
-This is similar to script-fu, except that you can use the full set
-of Python extension modules from the plug-in, and you write plug-in
-in python instead of in scheme.
-
 %prep
-%autosetup -p1
-autoupdate
-autoreconf -fiv
-
+%autosetup -n %{name}-%{version}-RC1 -p1
 %build
-%configure \
-	--enable-default-binary=yes \
-	--enable-gimp-console \
-	--enable-mp=yes \
-%if %{with python}
-	--enable-python=yes \
-%else
-	--enable-python=no \
-%endif
-	--enable-gtk-doc=yes \
-	--with-pdbgen \
-	--with-print \
-	--with-aa \
-	--with-linux-input \
-	--without-webkit \
-	--with-libmng \
-	--with-libxpm \
-	--with-alsa \
-	--with-cairo-pdf \
-	--with-bug-report-url=https://issues.openmandriva.org
+sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
+%meson \
+	-Dcheck-update=no	\
+	-Djpeg-xl=enabled	\
+	-Dilbm=disabled		\
+	-Dappdata-test=disabled \
+ 	-Dheif=disabled		\
+	-Dbug-report-url="https://issues.openmandriva.org"
 
-%make_build
+%meson_build
 
 %install
-%make_install
 
-# workaround broken help system
-HELP_DIR=%{buildroot}%{_datadir}/gimp/%api/help/C
-[[ -d $HELP_DIR ]] || mkdir -p $HELP_DIR
-HELP_IDX=$HELP_DIR/introduction.html
-echo -e '<HTML><HEAD><TITLE>GIMP Base Library</HEAD>\n<BODY><UL>' > $HELP_IDX
-
-/bin/ls %{buildroot}%{_datadir}/gtk-doc/html/*/index.html | sed -e "s@%{buildroot}@@g" >> $HELP_IDX
-perl -pi -e 's!(.*/html/)([^/]*)(/index.html)!<LI><A HREF="\1\2\3">\2</A>!g' $HELP_IDX
-
-echo '</UL></BODY></HTML>' >> $HELP_IDX
+%meson_install
 
 %find_lang gimp20 --all-name
 
-%if %{with python}
-chmod 755 %{buildroot}%{_libdir}/gimp/%{api}/plug-ins/*/*.py
-mkdir -p %{buildroot}%{_libdir}/python%{py_ver}/site-packages
-echo %{_libdir}/gimp/%{api}/python > %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
-echo %{_libdir}/gimp/%{api}/plug-ins >> %{buildroot}%{_libdir}/python%{py_ver}/site-packages/gimp.pth
-%endif
+#chmod 755 %{buildroot}%{_libdir}/gimp/%{abi_version}/plug-ins/*/*.py
+#mkdir -p %{buildroot}%{_libdir}/python%{python3_version}/site-packages
+#echo %{_libdir}/gimp/%{abi_version}/extensions > %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
+#echo %{_libdir}/gimp/%{abi_version}/plug-ins >> %{buildroot}%{_libdir}/python%{python3_version}/site-packages/gimp.pth
 
 desktop-file-install --vendor="" \
 	--add-category="X-MandrivaLinux-CrossDesktop" \
@@ -234,23 +201,37 @@ desktop-file-install --vendor="" \
 %config(noreplace) %{_sysconfdir}/gimp
 %{_bindir}/gimp
 %{_bindir}/gimp-%{abi}
+%{_bindir}/gimp-%{minor}
 %{_bindir}/gimp-console
 %{_bindir}/gimp-console-%{abi}
+%{_bindir}/gimp-console-%{minor}
+%{_bindir}/gimp-script-fu-interpreter-%{abi}
+%{_bindir}/gimp-test-clipboard
 %{_bindir}/gimp-test-clipboard-%{api}
-%{_libexecdir}/gimp-debug-tool-2.0
+%{_bindir}/gimp-test-clipboard-%{minor}
+%{_bindir}/gimptool
+%{_libexecdir}/gimp-debug-tool*
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
-%{_libdir}/gimp/%{api}/environ/default.env
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
-%if %{with python}
-%exclude %{_libdir}/gimp/%{api}/plug-ins/*/*.py
-%endif
+%{_libdir}/gimp/%{api}/environ/python.env
+%{_libdir}/gimp/%{api}/environ/default.env
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-c
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-c.c
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-gjs.js
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-py3.py
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-vala
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-vala.vala
+%{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/org.gimp.extension.goat-exercises.metainfo.xml
+%{_libdir}/girepository-1.0/
+%{_libdir}/libgimp-scriptfu-%{api}.so.%{major}*
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
 %{_datadir}/icons/hicolor/*/apps/gimp.png
+%{_iconsdir}/hicolor/scalable/apps/gimp.svg
 %{_mandir}/man1/gimp-*
 %{_mandir}/man1/gimp.*
 %{_mandir}/man5/gimp*
@@ -265,19 +246,13 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-%doc ChangeLog
-%doc %{_datadir}/gtk-doc/html/*
+%doc %{_datadir}/doc/gimp-%{api}/
 %{_bindir}/gimptool-*
-%{_datadir}/aclocal/*.m4
 %{_includedir}/*
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
+%{_datadir}/gir-1.0/Gimp-%{api}.gir
+%{_datadir}/gir-1.0/GimpUi-%{api}.gir
+%{_datadir}/vala/vapi/
 %{_mandir}/man1/gimptool-*
-
-%if %{with python}
-%files python
-%{_libdir}/gimp/%{api}/environ/pygimp.env
-%{_libdir}/gimp/%{api}/python
-%{_libdir}/gimp/%{api}/plug-ins/*/*.py
-%{_libdir}/python%{py_ver}/site-packages/*.pth
-%endif
+%{_mandir}/man1/gimptool.1.*
