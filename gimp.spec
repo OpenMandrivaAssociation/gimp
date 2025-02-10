@@ -24,7 +24,7 @@ Release:	0
 License:	GPLv2+
 Group:		Graphics
 Url:		https://www.gimp.org/
-Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{oversion}-RC2.tar.xz
+Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{oversion}-RC3.tar.xz
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 #Patch0:		gimp-2.5.1-desktopentry.patch
