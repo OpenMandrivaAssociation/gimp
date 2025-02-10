@@ -15,14 +15,16 @@
 %define oldlibwidgets %mklibname gimpwidgets %{api} %{major}
 %define devname %mklibname -d %{name}%{api}
 
+%define oversion 3.0.0
+
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	3.0.0
-Release:	0.rc2.1
+Version:	3.0.0~RC3
+Release:	0
 License:	GPLv2+
 Group:		Graphics
 Url:		https://www.gimp.org/
-Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{version}-RC2.tar.xz
+Source0:	https://download.gimp.org/pub/gimp/v%{abi}/gimp-%{oversion}-RC2.tar.xz
 #Source1:	http://download.gimp.org/pub/gimp/v%%{abi}/gimp-%%{version}.tar.bz2.md5
 Source13:	gimp-scripting-sample.pl
 #Patch0:		gimp-2.5.1-desktopentry.patch
@@ -167,7 +169,7 @@ Provides:	%{name}-devel = %{EVRD}
 Development libraries and header files for writing GIMP plugins and extensions.
 
 %prep
-%autosetup -n %{name}-%{version}-RC2 -p1
+%autosetup -n %{name}-%{oversion}-RC3 -p1
 %build
 sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 %meson \
@@ -181,7 +183,6 @@ sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 %meson_build
 
 %install
-
 %meson_install
 
 %find_lang gimp20 --all-name
