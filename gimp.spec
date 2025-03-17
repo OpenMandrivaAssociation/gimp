@@ -166,7 +166,7 @@ Provides:	%{name}-devel = %{EVRD}
 Development libraries and header files for writing GIMP plugins and extensions.
 
 %prep
-%autosetup -n %{name}-%{oversion} -p1
+%autosetup -n %{name}-%{version} -p1
 %build
 sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 %meson \
