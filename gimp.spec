@@ -176,7 +176,7 @@ sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 	-Djpeg-xl=enabled	\
 	-Dilbm=disabled		\
 	-Dappdata-test=disabled \
- 	-Dheif=disabled		\
+ 	-Dheif=enabled		\
 	-Dbug-report-url="https://issues.openmandriva.org"
 
 %meson_build
