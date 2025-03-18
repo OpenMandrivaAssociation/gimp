@@ -50,6 +50,8 @@ BuildRequires:	pkgconfig(gudev-1.0) >= 167
 BuildRequires:	pkgconfig(harfbuzz-gobject)
 BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libavif)
+# Free version, not restricted 
+BuildRequires:  pkgconfig(libheif)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
