@@ -50,6 +50,8 @@ BuildRequires:	pkgconfig(gudev-1.0) >= 167
 BuildRequires:	pkgconfig(harfbuzz-gobject)
 BuildRequires:	pkgconfig(iso-codes)
 BuildRequires:	pkgconfig(libavif)
+# Free version, not restricted 
+BuildRequires:  pkgconfig(libheif)
 BuildRequires:	pkgconfig(lcms2) >= 2.2
 BuildRequires:	pkgconfig(libcurl) >= 7.15.1
 BuildRequires:	pkgconfig(libexif) >= 0.6.15
@@ -174,7 +176,7 @@ sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 	-Djpeg-xl=enabled	\
 	-Dilbm=disabled		\
 	-Dappdata-test=disabled \
- 	-Dheif=disabled		\
+ 	-Dheif=enabled		\
 	-Dbug-report-url="https://issues.openmandriva.org"
 
 %meson_build
