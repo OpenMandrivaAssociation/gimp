@@ -17,7 +17,7 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	3.0.0
+Version:	3.0.2
 Release:	1
 License:	GPLv2+
 Group:		Graphics
@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig(cfitsio)
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(fontconfig) >= 2.2.0
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.24.1
-BuildRequires:	pkgconfig(gegl-0.4)
+BuildRequires:	pkgconfig(gegl-0.4) >= 0.4.58
 BuildRequires:	pkgconfig(gexiv2) >= 0.10.6
 BuildRequires:	pkgconfig(gio-2.0) >= 2.30.2
 BuildRequires:	pkgconfig(glib-2.0) >= 2.30.2
