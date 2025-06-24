@@ -1,6 +1,6 @@
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
-%define api 3.0
+%define api 3.1
 %define abi 3.0
 %define major 0
 %define minor 3
