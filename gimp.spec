@@ -1,7 +1,7 @@
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
-%define api 3.1
-%define abi 3.0
+%define api 3.0
+%define abi 3.1
 %define major 0
 %define minor 3
 %define oldlibname %mklibname %{name} %{api}_%{major}
@@ -200,13 +200,14 @@ desktop-file-install --vendor="" \
 %doc AUTHORS NEWS README README.i18n docs/Wilber*
 %config(noreplace) %{_sysconfdir}/gimp
 %{_bindir}/gimp
-%{_bindir}/gimp-%{minor}
+%{_bindir}/gimp-%{minor}*
 %{_bindir}/gimp-console
-%{_bindir}/gimp-console-%{minor}
-%{_bindir}/gimp-script-fu-interpreter-%{abi}
+%{_bindir}/gimp-console-%{minor}*
+%{_bindir}/gimp-script-fu-interpreter-%{api}
 %{_bindir}/gimp-test-clipboard
-%{_bindir}/gimp-test-clipboard-%{minor}
-%{_bindir}/gimptool
+%{_bindir}/gimp-test-clipboard-%{minor}*
+%{_bindir}/gimptool*
+%{_libexecdir}/gimp-debug-tool*
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
 %{_libdir}/gimp/%{api}/interpreters
@@ -242,7 +243,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-#doc %{_datadir}/doc/gimp-%{api}/
+%doc %{_datadir}/doc/gimp-%{abi}/
 #{_bindir}/gimptool-*
 %{_includedir}/*
 %{_libdir}/lib*.so
