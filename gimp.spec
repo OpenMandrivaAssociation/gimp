@@ -73,6 +73,7 @@ BuildRequires:  pkgconfig(libjxl)
 BuildRequires:	pkgconfig(liblzma)
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
+BuildRequires:	appstream
 BuildRequires:	appstream-util
 BuildRequires:	dbus-daemon
 BuildRequires:	desktop-file-utils
