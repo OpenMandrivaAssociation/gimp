@@ -218,7 +218,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/gimp/%{api}/interpreters
 %{_libdir}/gimp/%{api}/modules
 %{_libdir}/gimp/%{api}/plug-ins
-%{_libdir}/gimp/%{api}/environ/python.env
+#{_libdir}/gimp/%{api}/environ/python.env
 %{_libdir}/gimp/%{api}/environ/default.env
 %{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-c
 %{_libdir}/gimp/%{api}/extensions/org.gimp.extension.goat-exercises/goat-exercise-c.c
