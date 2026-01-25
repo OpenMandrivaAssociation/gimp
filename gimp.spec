@@ -234,6 +234,7 @@ desktop-file-install --vendor="" \
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
+%{_datadir}/bash-completion/completions/gimp-3.0
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_iconsdir}/hicolor/scalable/apps/gimp.svg
 %{_mandir}/man1/gimp-*
