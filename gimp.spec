@@ -30,7 +30,7 @@ Source13:	gimp-scripting-sample.pl
 #Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 
 BuildRequires:	meson
-BuildRequires:	bash-completion
+BuildRequires:	pkgconfig(bash-completion)
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(appstream-glib)
 BuildRequires:	pkgconfig(libart-2.0)
