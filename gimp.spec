@@ -30,6 +30,7 @@ Source13:	gimp-scripting-sample.pl
 #Patch1:		0001-Build-with-mypaint-brushes-2.0.patch
 
 BuildRequires:	meson
+BuildRequires:	pkgconfig(bash-completion)
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(appstream-glib)
 BuildRequires:	pkgconfig(libart-2.0)
@@ -74,6 +75,8 @@ BuildRequires:  pkgconfig(libjxl)
 BuildRequires:	pkgconfig(liblzma)
 BuildRequires:	pkgconfig(OpenEXR)
 BuildRequires:	pkgconfig(libopenjp2)
+BuildRequires:	pkgconfig(appstream)
+BuildRequires:	appstream
 BuildRequires:	appstream-util
 BuildRequires:	dbus-daemon
 BuildRequires:	desktop-file-utils
@@ -171,7 +174,6 @@ Development libraries and header files for writing GIMP plugins and extensions.
 %prep
 %autosetup -n %{name}-%{version} -p1
 %build
-set -x
 %meson \
 	-Dcheck-update=no	\
 	-Djpeg-xl=enabled	\
@@ -228,6 +230,7 @@ desktop-file-install --vendor="" \
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
+%{_datadir}/bash-completion/completions/gimp-3.0
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_iconsdir}/hicolor/scalable/apps/gimp.svg
 %{_mandir}/man1/gimp-*
