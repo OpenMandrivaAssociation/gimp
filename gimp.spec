@@ -247,7 +247,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-%doc %{_datadir}/doc/gimp-%{abi}/
+#doc %{_datadir}/doc/gimp-%{abi}/
 #{_bindir}/gimptool-*
 %{_includedir}/*
 %{_libdir}/lib*.so
