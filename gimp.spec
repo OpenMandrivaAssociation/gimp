@@ -17,7 +17,7 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	3.1.2
+Version:	3.2.2
 Release:	1
 License:	GPLv2+
 Group:		Graphics
