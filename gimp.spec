@@ -170,6 +170,7 @@ Development libraries and header files for writing GIMP plugins and extensions.
 %prep
 %autosetup -n %{name}-%{version} -p1
 %build
+set -x
 %meson \
 	-Dcheck-update=no	\
 	-Djpeg-xl=enabled	\
