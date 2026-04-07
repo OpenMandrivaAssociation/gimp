@@ -1,7 +1,7 @@
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
 %define api 3.0
-%define abi 3.0
+%define abi 3.1
 %define major 0
 %define minor 3
 %define oldlibname %mklibname %{name} %{api}_%{major}
@@ -17,7 +17,7 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	3.0.8
+Version:	3.2.2
 Release:	1
 License:	GPLv2+
 Group:		Graphics
@@ -174,7 +174,6 @@ Development libraries and header files for writing GIMP plugins and extensions.
 %prep
 %autosetup -n %{name}-%{version} -p1
 %build
-sed -i 's!mypaint-brushes-1.0!mypaint-brushes-2.0!' meson.build
 %meson \
 	-Dcheck-update=no	\
 	-Djpeg-xl=enabled	\
@@ -204,16 +203,13 @@ desktop-file-install --vendor="" \
 %doc AUTHORS NEWS README README.i18n docs/Wilber*
 %config(noreplace) %{_sysconfdir}/gimp
 %{_bindir}/gimp
-%{_bindir}/gimp-%{abi}
-%{_bindir}/gimp-%{minor}
+%{_bindir}/gimp-%{minor}*
 %{_bindir}/gimp-console
-%{_bindir}/gimp-console-%{abi}
-%{_bindir}/gimp-console-%{minor}
-%{_bindir}/gimp-script-fu-interpreter-%{abi}
+%{_bindir}/gimp-console-%{minor}*
+%{_bindir}/gimp-script-fu-interpreter-%{api}
 %{_bindir}/gimp-test-clipboard
-%{_bindir}/gimp-test-clipboard-%{api}
-%{_bindir}/gimp-test-clipboard-%{minor}
-%{_bindir}/gimptool
+%{_bindir}/gimp-test-clipboard-%{minor}*
+%{_bindir}/gimptool*
 %{_libexecdir}/gimp-debug-tool*
 %dir %{_libdir}/gimp/%{api}
 %dir %{_libdir}/gimp/%{api}/environ
@@ -251,8 +247,8 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-%doc %{_datadir}/doc/gimp-%{api}/
-%{_bindir}/gimptool-*
+%doc %{_datadir}/doc/gimp-%{abi}/
+#{_bindir}/gimptool-*
 %{_includedir}/*
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
