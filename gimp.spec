@@ -1,7 +1,7 @@
 %global optflags %{optflags} -O3 -Wno-int-conversion
 
 %define api 3.0
-%define abi 3.1
+%define abi 3.2
 %define major 0
 %define minor 3
 %define oldlibname %mklibname %{name} %{api}_%{major}
@@ -230,7 +230,7 @@ desktop-file-install --vendor="" \
 %{_datadir}/applications/*
 %{_datadir}/metainfo/*.xml
 %{_datadir}/gimp
-#{_datadir}/bash-completion/completions/gimp-3.0
+%{_datadir}/bash-completion/completions/gimp-%{abi}
 %{_datadir}/icons/hicolor/*/apps/gimp.png
 %{_iconsdir}/hicolor/scalable/apps/gimp.svg
 %{_mandir}/man1/gimp-*
@@ -247,7 +247,7 @@ desktop-file-install --vendor="" \
 %{_libdir}/libgimpwidgets-%{api}.so.%{major}*
 
 %files -n %{devname}
-#doc %{_datadir}/doc/gimp-%{abi}/
+%doc %{_datadir}/doc/gimp-*
 #{_bindir}/gimptool-*
 %{_includedir}/*
 %{_libdir}/lib*.so
