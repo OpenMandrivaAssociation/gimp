@@ -113,18 +113,18 @@ BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(pycairo)
 # Require gegl, otherwise GIMP crashes on some operations
 # (at least on cage transformation)
-Requires:	gegl
-Requires:	%{_lib}gegl-gir0.4
-Requires:	xdg-utils
+Requires: gegl
+Requires: %{_lib}gegl-gir0.4
+Requires: xdg-utils
 # Graphviz is now required or GIMP refuse to start due error:
 # GIMP requires the GEGL operation "gegl:itrospect".
-Requires:	graphviz
-Requires:       gjs
-Requires:       hicolor-icon-theme
+Requires: graphviz
+Requires: gjs
+Requires: hicolor-icon-theme
 #Requires:	lib64gail18
 # Python requires:
-Requires:	python-gi
-Requires:	python-gobject3
+Requires: python-gi
+Requires: python-gobject3
 
 # No point in splitting out internal helper libraries...
 # Not using %%rename because that only obsoletes "older"
@@ -177,7 +177,6 @@ Development libraries and header files for writing GIMP plugins and extensions.
 %meson \
 	-Dcheck-update=no	\
 	-Djpeg-xl=enabled	\
-	-Dilbm=disabled		\
 	-Dappdata-test=disabled \
  	-Dheif=enabled		\
 	-Dbug-report-url="https://issues.openmandriva.org"
